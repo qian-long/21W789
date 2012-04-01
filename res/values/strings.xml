@@ -4,4 +4,11 @@
     <string name="hello">Hello World, ReRunActivity!</string>
     <string name="app_name">ReRun</string>
 
+    <string-array name="filter_list_array">
+        <item>Food</item>
+        <item>Electronics</item>
+        <item>Plants</item>
+        <item>Cats</item>
+    </string-array>
+
 </resources>

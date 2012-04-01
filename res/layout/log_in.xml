@@ -15,8 +15,10 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:text="Re-Run"
-        android:textAppearance="?android:attr/textAppearanceLarge" android:padding="15dp" android:textSize="50dp"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50dp" />
 
     <EditText
         android:id="@+id/username"
@@ -33,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/logInButton"
         android:layout_alignParentRight="true"
-        android:hint="Password" />
+        android:hint="Password"
+        android:inputType="textPassword" />
 
     <LinearLayout
         android:id="@+id/buttonSection"
@@ -46,15 +49,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="Log In" />
-
-        <Button
-            android:id="@+id/exitButton"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/logInButton"
-            android:layout_alignBottom="@+id/logInButton"
-            android:text="Exit" />
+            android:text="Log In"/>
     </LinearLayout>
 
 </LinearLayout>
