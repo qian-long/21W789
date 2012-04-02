@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -39,53 +40,37 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginRight="100dp"
             android:text="Item"
-            android:textAppearance="?android:attr/textAppearanceMedium" android:layout_marginRight="125dp" android:layout_marginLeft="5dp"/>
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="Posted"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="Time Posted"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <LinearLayout
-            android:layout_width="162dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" >
-
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="wrap_content"
-                android:layout_height="375dp" >
-            </ListView>
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/listView1"
-            android:layout_width="117dp"
-            android:layout_height="375dp"
-            android:layout_weight="1" >
-        </ListView>
-
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:gravity="left"
+            android:text="Used yellow bike            9:19AM"
+            android:textColor="#ffffff" >
+        </Button>
+        
+        
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="ITEM LIST"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>
