@@ -9,6 +9,8 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxHeight="wrap_content"
+        android:maxWidth="wrap_content"
         android:src="@drawable/re_run_logo" />
 
     <TextView
@@ -49,7 +51,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="Log In"/>
+            android:text="Log In" />
     </LinearLayout>
 
 </LinearLayout>
