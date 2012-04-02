@@ -13,23 +13,23 @@ public class ReRunActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        final TextView view = (TextView) findViewById(R.id.text1);
-        view.setText("hello, 21w.789");
+//        final TextView view = (TextView) findViewById(R.id.text1);
+//        view.setText("hello, 21w.789");
         Button button = (Button) findViewById(R.id.button1);
         
-        button.setOnClickListener(new View.OnClickListener() {
-            
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if (hello) {
-                    view.setText("goodbye, 21w.789");
-                    hello = false;
-                }
-                else {
-                    view.setText("hello, 21w.789");
-                    hello = true;
-                }
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                if (hello) {
+//                    view.setText("goodbye, 21w.789");
+//                    hello = false;
+//                }
+//                else {
+//                    view.setText("hello, 21w.789");
+//                    hello = true;
+//                }
+//            }
+//        });
     }
 }

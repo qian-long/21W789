@@ -28,13 +28,23 @@
             android:label="@string/app_name"
             android:launchMode="singleTop"  
             android:theme="@android:style/Theme.NoTitleBar">
-<!--             <action android:name="android.intent.action.MAIN" /> -->
+            <action android:name="android.intent.action.MAIN" />
+
+        </activity>
+        <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name=".view.ItemListActivity" >
+        </activity>
+        <activity android:name=".view.ItemDetailActivity" ></activity>
+        <activity android:name=".view.PostItemActivity" ></activity>
+        <activity android:name=".view.SettingsActivity"></activity>
+                
     </application>
 
 </manifest>
