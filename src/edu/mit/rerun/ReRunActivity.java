@@ -14,7 +14,6 @@ public class ReRunActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.log_in);
         
         Button next = (Button) findViewById(R.id.logInButton);
@@ -33,13 +32,10 @@ public class ReRunActivity extends Activity {
 //        view.setText("hello, 21w.789");
 //        Button button = (Button) findViewById(R.id.button1);
 //        
-=======
-        setContentView(R.layout.main);
+
 //        final TextView view = (TextView) findViewById(R.id.text1);
 //        view.setText("hello, 21w.789");
-        Button button = (Button) findViewById(R.id.button1);
-        
->>>>>>> 3d01adfadcb6d21757b0d7efe25264d7a99bb54a
+
 //        button.setOnClickListener(new View.OnClickListener() {
 //            
 //            public void onClick(View v) {

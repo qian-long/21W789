@@ -26,12 +26,11 @@ public class PostItemActivity extends Activity {
         setContentView(R.layout.postitem);
         Button postButton = (Button) findViewById(R.id.post_button);
         Button pictureButton = (Button) findViewById(R.id.picture_button);
-        
         pictureButton.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
                 // TODO 
-                Toast.makeText(v.getContext(), "Open pictures stub", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Open pictures stub", Toast.LENGTH_SHORT);
             }
         });
         
@@ -39,7 +38,7 @@ public class PostItemActivity extends Activity {
             
             public void onClick(View v) {
                 // TODO 
-                Toast.makeText(v.getContext(), "Post Item stub", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Post Item stub", Toast.LENGTH_SHORT);
             }
         });
     }
