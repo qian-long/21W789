@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+
 /**
  * This class is the Activity for posting an item.
  * User should input title, description, location.
@@ -42,4 +43,5 @@ public class PostItemActivity extends Activity {
             }
         });
     }
+
 }
