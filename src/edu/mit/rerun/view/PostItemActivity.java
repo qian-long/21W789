@@ -1,6 +1,12 @@
 package edu.mit.rerun.view;
 
+import edu.mit.rerun.R;
 import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This class is the Activity for posting an item.
@@ -11,5 +17,16 @@ import android.app.Activity;
  *
  */
 public class PostItemActivity extends Activity {
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.postitem);
 
+		Button post = (Button) findViewById(R.id.postButton);
+		post.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Toast.makeText(getApplicationContext(), "Item Posted",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
 }
