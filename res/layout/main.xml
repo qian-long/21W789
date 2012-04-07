@@ -57,7 +57,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <Button
             android:id="@+id/button1"
@@ -69,8 +70,50 @@
             android:text="Used yellow bike            9:19AM"
             android:textColor="#ffffff" >
         </Button>
-        
-        
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:gravity="left"
+            android:text="CLRS textbook                9:25AM"
+            android:textColor="#ffffff" >
+        </Button>
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:gravity="left"
+            android:text="tray of cookies               10:37AM"
+            android:textColor="#ffffff" >
+        </Button>
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:gravity="left"
+            android:text="blue trash can                12:30PM"
+            android:textColor="#ffffff" >
+        </Button>
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:gravity="left"
+            android:text="pizza                                  2:31PM"
+            android:textColor="#ffffff" >
+        </Button>
     </LinearLayout>
 
 </LinearLayout>

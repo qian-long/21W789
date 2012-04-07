@@ -55,7 +55,7 @@
             android:id="@+id/filter1"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Item 1"
+            android:text="Filter 1"
             android:textSize="25dp" />
 
         <Button

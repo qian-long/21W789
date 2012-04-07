@@ -68,6 +68,6 @@
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Filter" android:paddingRight="70dp"/>
+        android:text="Create Filter"/>
 
 </LinearLayout>
