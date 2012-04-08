@@ -22,6 +22,7 @@ public class LoginActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
+//            	System.out.println("hello!");
                 Intent intent = new Intent(v.getContext(), ItemListActivity.class);
                 startActivity(intent);
             }

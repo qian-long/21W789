@@ -14,7 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class SettingsActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.filter_list);
+		//setContentView(R.layout.filter_list);
 
 		String[] filters = getResources().getStringArray(R.array.filter_list_array);
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.filter_item, filters));
