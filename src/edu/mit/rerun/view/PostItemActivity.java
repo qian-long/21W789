@@ -2,11 +2,13 @@ package edu.mit.rerun.view;
 
 import edu.mit.rerun.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 /**
  * This class is the Activity for posting an item.
@@ -17,16 +19,28 @@ import android.widget.Toast;
  *
  */
 public class PostItemActivity extends Activity {
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.postitem);
 
-		Button post = (Button) findViewById(R.id.postButton);
-		post.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Toast.makeText(getApplicationContext(), "Item Posted",
-						Toast.LENGTH_SHORT).show();
-			}
-		});
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.postitem);
+        Button postButton = (Button) findViewById(R.id.post_button);
+        Button pictureButton = (Button) findViewById(R.id.picture_button);
+        pictureButton.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                // TODO 
+                Toast.makeText(getApplicationContext(), "Open pictures stub", Toast.LENGTH_SHORT);
+            }
+        });
+        
+        postButton.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                // TODO 
+                Toast.makeText(getApplicationContext(), "Post Item stub", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
 }

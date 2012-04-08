@@ -52,6 +52,8 @@
         </activity>
         <activity android:name=".view.SettingsActivity" >
         </activity>
+        <activity android:name=".view.EditFilterActivity" >
+        </activity>
     </application>
 
 </manifest>

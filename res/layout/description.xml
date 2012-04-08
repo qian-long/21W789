@@ -39,8 +39,13 @@
             android:gravity="center"
             android:orientation="horizontal" >
 
+<<<<<<< HEAD
             <ImageButton
                 android:id="@+id/button1"
+=======
+            <Button
+                android:id="@+id/see_map_button"
+>>>>>>> 27a3faf87057b4b9da5ceacf95c068afec8d5800
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,8 +53,13 @@
                 android:background="@drawable/map_item_icon"
                 android:scaleType="fitXY" />
 
+<<<<<<< HEAD
             <ImageButton
                 android:id="@+id/button2"
+=======
+            <Button
+                android:id="@+id/claim_button"
+>>>>>>> 27a3faf87057b4b9da5ceacf95c068afec8d5800
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -51,5 +51,4 @@
             android:layout_alignParentBottom="true"
             android:text="Log In" />
     </LinearLayout>
-
 </LinearLayout>
