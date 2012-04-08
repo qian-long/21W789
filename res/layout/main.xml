@@ -20,16 +20,16 @@
 
         <ImageButton
             android:id="@+id/postButton"
-            android:layout_width="28dp"
-            android:layout_height="36dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="end"
             android:background="@drawable/post_icon"
             android:scaleType="fitXY" />
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="28dp"
-            android:layout_height="36dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="end"
             android:background="@drawable/add_filter_icon"
             android:scaleType="fitXY" />
