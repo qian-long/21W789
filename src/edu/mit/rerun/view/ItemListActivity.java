@@ -20,7 +20,7 @@ public class ItemListActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.main);
         ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
         ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
         
@@ -38,6 +38,16 @@ public class ItemListActivity extends Activity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        Button fakeButton = (Button) findViewById(R.id.button1);
+        fakeButton.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
                 startActivity(intent);
             }
         });
