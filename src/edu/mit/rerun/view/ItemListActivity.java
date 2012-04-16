@@ -2,6 +2,7 @@ package edu.mit.rerun.view;
 
 import edu.mit.rerun.R;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,41 +16,33 @@ import android.widget.ImageButton;
  * Menu Item: 
  * 
  */
-public class ItemListActivity extends Activity {
+public class ItemListActivity extends ListActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item);
-        ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
-        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
-        
-        postButton.setOnClickListener(new View.OnClickListener() {
-            
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(v.getContext(), PostItemActivity.class);
-                startActivity(intent);
-            }
-        });
-        
-        addButton.setOnClickListener(new View.OnClickListener() {
-            
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
-                startActivity(intent);
-            }
-        });
-        
-//        Button fakeButton = (Button) findViewById(R.id.logInButton);
-//        fakeButton.setOnClickListener(new View.OnClickListener() {
+//        ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
+//        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+//        
+//        postButton.setOnClickListener(new View.OnClickListener() {
 //            
 //            public void onClick(View v) {
 //                // TODO Auto-generated method stub
-//                Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
+//                Intent intent = new Intent(v.getContext(), PostItemActivity.class);
 //                startActivity(intent);
 //            }
 //        });
+//        
+//        addButton.setOnClickListener(new View.OnClickListener() {
+//            
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+
     }
 }

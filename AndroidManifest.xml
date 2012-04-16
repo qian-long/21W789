@@ -50,7 +50,7 @@
         </activity>
         <activity android:name=".view.PostItemActivity" >
         </activity>
-        <activity android:name=".view.SettingsActivity" >
+        <activity android:name=".view.FilterSettingsActivity" >
         </activity>
         <activity android:name=".view.EditFilterActivity" >
         </activity>

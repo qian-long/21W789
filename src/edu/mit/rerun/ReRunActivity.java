@@ -9,26 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ReRunActivity extends Activity {
-<<<<<<< HEAD
-	/** Called when the activity is first created. */
-	private boolean hello = true;
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.log_in);
 
-		Button next = (Button) findViewById(R.id.logInButton);
-		next.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-
-				// TODO- temporary code here for view change
-				//System.out.println("hello");
-				setContentView(R.layout.postitem);
-			}
-
-		});
-	}
-=======
     /** Called when the activity is first created. */
     private boolean hello = true;
     @Override
@@ -46,6 +27,7 @@ public class ReRunActivity extends Activity {
             }
 
         });
+    }
         
         
 //        final TextView view = (TextView) findViewById(R.id.textView1);
@@ -70,6 +52,5 @@ public class ReRunActivity extends Activity {
 //                }
 //            }
 //        });
-    }
->>>>>>> 27a3faf87057b4b9da5ceacf95c068afec8d5800
+
 }
