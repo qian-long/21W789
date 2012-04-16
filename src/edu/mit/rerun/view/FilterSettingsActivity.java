@@ -21,6 +21,36 @@ public class FilterSettingsActivity extends Activity {
 		//		setListAdapter(new ArrayAdapter<String>(this, R.layout.filter_item, filters));
 		//		ListView lv = getListView();
 		//		lv.setTextFilterEnabled(true);
+		ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
+		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+		ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
+
+		postButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(v.getContext(), PostItemActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		addButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		homeButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(v.getContext(), ItemListActivity.class);
+				startActivity(intent);
+			}
+		});
+
 
 		Button button = (Button) findViewById(R.id.editFilterButton1);
 		button.setOnClickListener(new View.OnClickListener() {

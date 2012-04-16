@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/filterHeading"
-            android:layout_width="150dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="Filter"
             android:textSize="25dp"
@@ -23,7 +23,7 @@
             android:id="@+id/optionsHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="20dp"
+            android:paddingRight="18dp"
             android:text="Options"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -43,6 +43,14 @@
             android:layout_gravity="right"
             android:background="@drawable/add_filter_icon"
             android:scaleType="fitXY" />
+
+        <ImageButton
+            android:id="@+id/homeButton"
+            android:layout_width="28dp"
+            android:layout_height="36dp"
+            android:layout_gravity="right"
+            android:background="@drawable/re_run_logo_gray"
+            android:scaleType="fitXY" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +61,7 @@
 
         <TextView
             android:id="@+id/filter1"
-            android:layout_width="150dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="Filter 1"
             android:textSize="25dp" />

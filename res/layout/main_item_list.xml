@@ -36,13 +36,6 @@
             android:orientation="horizontal" >
 
             <ImageButton
-                android:id="@+id/filterButton"
-                android:layout_width="28dp"
-                android:layout_height="36dp"
-                android:background="@drawable/filter_icon"
-                android:scaleType="fitXY" />
-
-            <ImageButton
                 android:id="@+id/postButton"
                 android:layout_width="28dp"
                 android:layout_height="36dp"
@@ -54,6 +47,13 @@
                 android:layout_width="28dp"
                 android:layout_height="36dp"
                 android:background="@drawable/add_filter_icon"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:id="@+id/filterButton"
+                android:layout_width="28dp"
+                android:layout_height="36dp"
+                android:background="@drawable/filter_icon"
                 android:scaleType="fitXY" />
         </LinearLayout>
     </LinearLayout>
