@@ -68,4 +68,5 @@ public class ReRunActivity extends Activity implements SimpleGestureListener {
         Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
     }
 
+
 }

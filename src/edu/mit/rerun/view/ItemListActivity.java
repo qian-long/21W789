@@ -23,31 +23,30 @@ import android.widget.ImageButton;
  */
 public class ItemListActivity extends ListActivity {
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_item_list);
-//        ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
-//        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
-//        
-//        postButton.setOnClickListener(new View.OnClickListener() {
-//            
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                Intent intent = new Intent(v.getContext(), PostItemActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//        
-//        addButton.setOnClickListener(new View.OnClickListener() {
-//            
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
+        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+        
+        postButton.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(), PostItemActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        addButton.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
+                startActivity(intent);
+            }
+        });
         List<ReuseItem> samples = new ArrayList<ReuseItem>();
         samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
         samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
@@ -60,4 +59,5 @@ public class ItemListActivity extends ListActivity {
         setListAdapter(adapter);
 
     }
+
 }
