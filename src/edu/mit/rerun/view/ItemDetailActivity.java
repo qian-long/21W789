@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -26,8 +27,8 @@ public class ItemDetailActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.description);
         
-        Button mapButton = (Button)findViewById(R.id.see_map_button);
-        Button claimButton = (Button)findViewById(R.id.claim_button);
+        ImageButton mapButton = (ImageButton)findViewById(R.id.see_map_button);
+        ImageButton claimButton = (ImageButton)findViewById(R.id.claim_button);
         
         mapButton.setOnClickListener(new View.OnClickListener() {
 

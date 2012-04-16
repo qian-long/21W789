@@ -1,6 +1,10 @@
 package edu.mit.rerun.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.mit.rerun.R;
+import edu.mit.rerun.model.ReuseItem;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -21,7 +25,7 @@ public class ItemListActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.main_item_list);
 //        ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
 //        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
 //        
@@ -42,7 +46,16 @@ public class ItemListActivity extends ListActivity {
 //                startActivity(intent);
 //            }
 //        });
+        List<ReuseItem> samples = new ArrayList<ReuseItem>();
+        samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
+        samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
+        samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
+        samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
+        samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
+        samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
 
+        ItemListAdapter adapter = new ItemListAdapter(this, (ArrayList<ReuseItem>)samples);
+        setListAdapter(adapter);
 
     }
 }

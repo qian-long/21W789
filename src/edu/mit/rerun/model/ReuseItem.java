@@ -11,14 +11,16 @@ public class ReuseItem {
     private String title;
     private String description;
     private String location;
+    private String time;
     private int latitude;
     private int longitude;
-	public ReuseItem(String id, String sender, String title, String description, String location, int latitude, int longitude) {
+	public ReuseItem(String id, String sender, String title, String description, String location, String time, int latitude, int longitude) {
 		this.id = id;
 	    this.sender = sender;
 		this.title = title;
 		this.description = description;
 		this.location = location;
+		this.time = time;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		
@@ -42,6 +44,10 @@ public class ReuseItem {
 	
 	public String getLocation() {
 	    return new String(location);
+	}
+	
+	public String getTime() {
+	    return new String(time);
 	}
 	
 	public int getLatitude() {

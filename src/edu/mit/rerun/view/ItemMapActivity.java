@@ -36,9 +36,9 @@ public class ItemMapActivity extends MapActivity {
 
         // dummy data
         List<ReuseItem> items = new ArrayList<ReuseItem>();
-        items.add(new ReuseItem("id1", "sender1", "title1", "description1", "location1", 42358881,-71090137));
-        items.add(new ReuseItem("id2", "sender2", "title2", "description2", "location2", 42358072,-71092701));
-        items.add(new ReuseItem("id3", "sender3", "title3", "description3", "location3", 42359000,-71094702));
+        items.add(new ReuseItem("id1", "sender1", "title1", "description1", "location1", "4/16/2012", 42358881,-71090137));
+        items.add(new ReuseItem("id2", "sender2", "title2", "description2", "location2", "4/16/2012", 42358072,-71092701));
+        items.add(new ReuseItem("id3", "sender3", "title3", "description3", "location3", "4/16/2012", 42359000,-71094702));
 
         refreshMap(items);
     }

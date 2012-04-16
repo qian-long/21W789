@@ -2,12 +2,15 @@ package edu.mit.rerun.view;
 
 import java.util.ArrayList;
 
+import edu.mit.rerun.R;
 import edu.mit.rerun.model.ReuseItem;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class ItemListAdapter extends ArrayAdapter<ReuseItem>{
 
@@ -30,7 +33,19 @@ public class ItemListAdapter extends ArrayAdapter<ReuseItem>{
         View view = convertView;
         ReuseItem item = items.get(position);
         if (item != null) {
-            
+            view = inflator.inflate(R.layout.item_row, null);
+            view.setOnClickListener(new View.OnClickListener() {
+                
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+            TextView title = (TextView) view.findViewById(R.id.item_title);
+            TextView timestamp = (TextView) view.findViewById(R.id.item_timestamp);
+            title.setText(item.getTitle());
+            timestamp.setText(item.getTime());
         }
         return view;
     }
