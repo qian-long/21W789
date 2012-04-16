@@ -15,18 +15,20 @@
             android:id="@+id/itemHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="100dp"
             android:text="Item"
             android:textSize="25dp"
-            android:textStyle="bold" android:layout_marginRight="100dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/timeHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="35dp"
             android:paddingRight="20dp"
             android:text="Time"
             android:textSize="25dp"
-            android:textStyle="bold" android:layout_marginRight="35dp"/>
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/postButton"
