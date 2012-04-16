@@ -1,9 +1,10 @@
-package edu.mit.rerun.view;
+package edu.mit.rerun.utils;
 
 import java.util.ArrayList;
 
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.ReuseItem;
+import edu.mit.rerun.view.ItemDetailActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.ReuseItem;
+import edu.mit.rerun.utils.ItemListAdapter;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;

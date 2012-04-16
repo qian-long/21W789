@@ -25,7 +25,7 @@ public class ItemDetailActivity extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.description);
+        setContentView(R.layout.item_detail);
         
         ImageButton mapButton = (ImageButton)findViewById(R.id.see_map_button);
         ImageButton claimButton = (ImageButton)findViewById(R.id.claim_button);
