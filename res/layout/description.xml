@@ -29,9 +29,9 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="0.31"
-            android:text="Description of item..."
-            android:layout_marginTop="10dp"/>
+            android:text="Description of item..." />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,20 +39,32 @@
             android:gravity="center"
             android:orientation="horizontal" >
 
-            <Button
+            <ImageButton
                 android:id="@+id/see_map_button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="See Map" 
-                android:layout_marginRight="40dp"/>
+                android:layout_marginRight="30dp"
+                android:background="@drawable/map_item_icon"
+                android:scaleType="fitXY" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/claim_button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Claim" />
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/claim_icon"
+                android:scaleType="fitXY" />
+
+            <Button>
+            </Button>
+
+            <ImageButton>
+            </ImageButton>
+
+            <ImageButton>
+            </ImageButton>
         </LinearLayout>
 
         <TextView
@@ -60,10 +72,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.04"
+            android:gravity="center"
             android:text="Item Description"
-            android:gravity="center_vertical|center_horizontal"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    </LinearLayout> 
+    </LinearLayout>
 
 </LinearLayout>

@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical" >
-
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="160dp"
@@ -51,4 +51,5 @@
             android:layout_alignParentBottom="true"
             android:text="Log In" />
     </LinearLayout>
+
 </LinearLayout>
