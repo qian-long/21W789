@@ -14,39 +14,39 @@ import android.widget.TextView;
 
 public class ItemListAdapter extends ArrayAdapter<ReuseItem>{
 
-    private ArrayList<ReuseItem> items;
-    private LayoutInflater inflator;
-    private Context context;
+	private ArrayList<ReuseItem> items;
+	private LayoutInflater inflator;
+	private Context context;
 
-    
-    public ItemListAdapter(Context context, ArrayList<ReuseItem> items) {
-        super(context, 0, items);
-        // TODO Auto-generated constructor stub
-        this.context = context;
-        this.items = items;
-        inflator = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        ReuseItem item = items.get(position);
-        if (item != null) {
-            view = inflator.inflate(R.layout.item_row, null);
-            view.setOnClickListener(new View.OnClickListener() {
-                
-                public void onClick(View v) {
-                    // TODO Auto-generated method stub
-                    Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
-                    context.startActivity(intent);
-                }
-            });
-            TextView title = (TextView) view.findViewById(R.id.item_title);
-            TextView timestamp = (TextView) view.findViewById(R.id.item_timestamp);
-            title.setText(item.getTitle());
-            timestamp.setText(item.getTime());
-        }
-        return view;
-    }
+	public ItemListAdapter(Context context, ArrayList<ReuseItem> items) {
+		super(context, 0, items);
+		// TODO Auto-generated constructor stub
+		this.context = context;
+		this.items = items;
+		inflator = (LayoutInflater) context
+		.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		View view = convertView;
+		ReuseItem item = items.get(position);
+		if (item != null) {
+			view = inflator.inflate(R.layout.item_row, null);
+			view.setOnClickListener(new View.OnClickListener() {
+
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
+					context.startActivity(intent);
+				}
+			});
+			TextView title = (TextView) view.findViewById(R.id.item_title);
+			TextView timestamp = (TextView) view.findViewById(R.id.item_timestamp);
+			title.setText(item.getTitle());
+			timestamp.setText(item.getTime());
+		}
+		return view;
+	}
 }
