@@ -12,7 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
  * This Activity is where users can change their filters. 
  *
  */
-public class SettingsActivity extends Activity {
+public class FilterSettingsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.filter_list);

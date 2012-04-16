@@ -18,7 +18,7 @@ public class EditFilterActivity extends Activity {
         createFilterButton.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SettingsActivity.class);
+                Intent intent = new Intent(v.getContext(), FilterSettingsActivity.class);
                 startActivity(intent);
             }
         });

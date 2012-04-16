@@ -13,44 +13,50 @@
 
         <TextView
             android:id="@+id/itemHeading"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="100dp"
+            android:layout_weight="2"
             android:text="Item"
             android:textSize="25dp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold" android:layout_marginRight="100dp"/>
         <TextView
             android:id="@+id/timeHeading"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="35dp"
-            android:paddingRight="20dp"
+            android:layout_weight="1.86"
             android:text="Time"
             android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textStyle="bold" android:layout_marginRight="50dp"/>
 
-        <ImageButton
-            android:id="@+id/postButton"
-            android:layout_width="28dp"
-            android:layout_height="36dp"
-            android:layout_gravity="right"
-            android:background="@drawable/post_icon"
-            android:scaleType="fitXY" />
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight=".5"
+            android:orientation="horizontal" >
 
-        <ImageButton
-            android:id="@+id/addButton"
-            android:layout_width="28dp"
-            android:layout_height="36dp"
-            android:layout_gravity="right"
-            android:background="@drawable/add_filter_icon"
-            android:scaleType="fitXY" />
+            <ImageButton
+                android:id="@+id/postButton"
+                android:layout_width="28dp"
+                android:layout_height="36dp"
+                android:layout_gravity="right"
+                android:background="@drawable/post_icon"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:id="@+id/addButton"
+                android:layout_width="28dp"
+                android:layout_height="36dp"
+                android:layout_gravity="right"
+                android:background="@drawable/add_filter_icon"
+                android:scaleType="fitXY" />
+        </LinearLayout>
     </LinearLayout>
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="false" />
 
 </LinearLayout>
