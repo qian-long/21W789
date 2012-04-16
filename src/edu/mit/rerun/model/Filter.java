@@ -9,12 +9,19 @@ import java.util.Set;
  * Model for a Filter.
  */
 public class Filter {
+    public static final String KEYWORD_DELIMITER = ",";
     private Set<String> keywords;
     private String filterName;
+    private boolean used;
     
-    public Filter(String filterName) {
+    public Filter(String filterName, boolean used) {
         this.filterName = filterName;
         keywords = new HashSet<String>();
+    }
+    
+    public Filter(String filterName, boolean used, Set<String> keywords) {
+        this.filterName = filterName;
+        this.keywords = keywords;
     }
     
     public void addKeyWord(String keyword) {
@@ -38,5 +45,21 @@ public class Filter {
             words.add(keyword);
         }
         return words;
+    }
+    
+    public String getKeyWordsString() {
+        StringBuilder builder = new StringBuilder();
+        for (String keyword: keywords) {
+            builder.append(keyword + KEYWORD_DELIMITER);
+        }
+        return builder.toString();
+    }
+    public int getUsedStatus() {
+        return (this.used) ? 1:0;
+    }
+    
+    //setters
+    public void setUsed(boolean used) {
+        this.used = used;
     }
 }
