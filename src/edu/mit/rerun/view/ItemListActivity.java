@@ -22,7 +22,7 @@ import android.widget.ImageButton;
  * 
  */
 public class ItemListActivity extends ListActivity {
-
+    public static final int CANCEL = 0;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
