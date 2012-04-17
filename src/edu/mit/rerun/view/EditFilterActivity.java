@@ -3,7 +3,6 @@ package edu.mit.rerun.view;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.Filter;
 import edu.mit.rerun.utils.DatabaseAdapter;
@@ -65,7 +64,7 @@ public class EditFilterActivity extends ListActivity {
         if (!newFilter) {
             mDbAdapter.open();
             Filter filter = mDbAdapter.getFilter(oldFilterName);
-            for (String keyword: filter.getKeyWords()) {
+            for (String keyword : filter.getKeyWords()) {
                 rows.add(keyword);
             }
         }
@@ -84,7 +83,6 @@ public class EditFilterActivity extends ListActivity {
                 dialog.setTitle("Add Keyword");
                 dialog.setCancelable(false);
 
-                Log.i(TAG, "after creating dialog");
                 Button addBtn = (Button) dialog.findViewById(R.id.save_btn);
                 Button cancelBtn = (Button) dialog
                         .findViewById(R.id.cancel_btn);
@@ -93,13 +91,16 @@ public class EditFilterActivity extends ListActivity {
                 addBtn.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        if (checkInput(input.getText().toString().trim())) {
+                        if (checkKeywordInput(input.getText().toString().trim())) {
                             rows.add(input.getText().toString().trim());
                             setListAdapter(new EditFilterListAdapter(mContext,
                                     rows, getParent()));
-
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(mContext,
+                                    "please enter a valid keyword",
+                                    Toast.LENGTH_SHORT).show();
                         }
-                        dialog.dismiss();
                     }
                 });
                 cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -123,39 +124,48 @@ public class EditFilterActivity extends ListActivity {
         save.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "saving filter",
-                        Toast.LENGTH_SHORT).show();
                 Filter filter = new Filter(filterName.getText().toString(),
                         true, new HashSet<String>(rows));
                 mDbAdapter.open();
                 // TODO validate filter name and keywords
-                
-                //removes old filter
+
+                // removes old filter
                 if (!newFilter && oldFilterName != null) {
                     mDbAdapter.removeFilter(oldFilterName);
                 }
-                mDbAdapter.addFilter(filter);
-                mDbAdapter.close();
+                if (!mDbAdapter.filterExist(filter.getFiltername())) {
+                    mDbAdapter.addFilter(filter);
+                    mDbAdapter.close();
 
-                setResult(ItemListActivity.ADD_FILTER_RESULT);
-                finish();
+                    setResult(ItemListActivity.ADD_FILTER_RESULT);
+                    finish();
+                } else {
+                    Toast.makeText(v.getContext(), "Filter already exists, please enter another filter name",
+                            Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
 
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ItemListActivity.ADD_FILTER_RESULT) {
-            Intent intent = new Intent((Context)this, FilterSettingsActivity.class);
+            Intent intent = new Intent((Context) this,
+                    FilterSettingsActivity.class);
             startActivity(intent);
-            
+
         }
     }
-    // TODO
-    private boolean checkInput(String input) {
-        return true;
+
+    // TODO, check to see that keyword is unique
+    private boolean checkKeywordInput(String input) {
+        boolean valid = true;
+        if (input == null || input.length() == 0) {
+            valid = false;
+        }
+        return valid;
     }
 }

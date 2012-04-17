@@ -172,12 +172,29 @@ public class DatabaseAdapter {
         Cursor cursor = mDb.query(DATABASE_TABLE, new String[] { KEY_ROWID,
                 KEY_FILTERNAME, KEY_FILTER_KEYWORDS }, KEY_FILTERNAME + "=\'"
                 + name + "\'", null, null, null, null);
-        cursor.moveToFirst();
-        String[] words = cursor.getString(2).split(Filter.KEYWORD_DELIMITER);
-        Set<String> set = new HashSet<String>(Arrays.asList(words));
-        return new Filter(name, (KEY_USED == "1"), set);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String[] words = cursor.getString(2)
+                    .split(Filter.KEYWORD_DELIMITER);
+            Set<String> set = new HashSet<String>(Arrays.asList(words));
+            return new Filter(name, (KEY_USED == "1"), set);
+        } else {
+            return null;
+        }
     }
 
+    /**
+     * 
+     * @param filterName
+     * @return
+     *      true if exists, false if not
+     */
+    public boolean filterExist(String filterName) {
+        Cursor cursor = mDb.query(DATABASE_TABLE, new String[] { KEY_ROWID,
+                KEY_FILTERNAME }, KEY_FILTERNAME + "=\'"
+                + filterName + "\'", null, null, null, null);
+        return (cursor.getCount() > 0);
+    }
     /**
      * 
      * @param filterName
@@ -192,7 +209,6 @@ public class DatabaseAdapter {
 
     }
 
-    
     public boolean updatedFilterUse(String filterName, boolean use) {
         ContentValues updatedValues = new ContentValues();
         updatedValues.put(KEY_USED, new Integer((use) ? 1 : 0).toString());
