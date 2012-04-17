@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ public class EditFilterActivity extends ListActivity {
         View footer = inflater.inflate(R.layout.edit_filter_list_footer, null, false);
         lv.addFooterView(footer);
         
-        Button addKeyword = (Button) footer.findViewById(R.id.add_keyword);
+        ImageButton addKeyword = (ImageButton) footer.findViewById(R.id.add_keyword);
         Button cancel = (Button) footer.findViewById(R.id.cancel_btn);
         Button save = (Button) footer.findViewById(R.id.save_filter_btn);
         final EditText filterName = (EditText) findViewById(R.id.new_filter_name);
