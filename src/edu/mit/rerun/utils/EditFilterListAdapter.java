@@ -151,7 +151,7 @@ public class EditFilterListAdapter extends ArrayAdapter<String>{
 				}
 			});
 			Log.i(TAG, "set delete button listener");
-			Button edit = (Button) convertView.findViewById(R.id.edit_btn);
+			ImageButton edit = (ImageButton) convertView.findViewById(R.id.edit_btn);
 
 			edit.setOnClickListener(new View.OnClickListener() {
 
