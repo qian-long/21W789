@@ -34,7 +34,7 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        Filter filter = filters.get(position);
+        final Filter filter = filters.get(position);
         if (filter != null) {
             view = inflator.inflate(R.layout.list_entry_filter_item, null);
             
@@ -52,6 +52,7 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
                     Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
+                    intent.putExtra("filterName", filter.getFiltername());
                     context.startActivity(intent);
                 }
             });

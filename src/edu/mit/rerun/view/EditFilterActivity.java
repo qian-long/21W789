@@ -96,20 +96,21 @@ public class EditFilterActivity extends ListActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
-                //TODO: make intent
-                Toast.makeText(v.getContext(), "canceling filter", Toast.LENGTH_SHORT);
+                finish();
             }
         });
         
         save.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
-                //TODO: make dialog
-                Toast.makeText(v.getContext(), "saving filter", Toast.LENGTH_SHORT);
+                Toast.makeText(v.getContext(), "saving filter", Toast.LENGTH_SHORT).show();
                 Filter filter = new Filter(filterName.getText().toString(), true, new HashSet<String>(rows));
                 mDbAdapter.open();
+                //TODO validate filter name and keywords
                 mDbAdapter.addFilter(filter);
                 mDbAdapter.close();
+                Intent intent = new Intent(v.getContext(), FilterSettingsActivity.class);
+                startActivity(intent);
 
             }
         });
