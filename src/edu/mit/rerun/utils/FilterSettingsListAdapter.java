@@ -1,6 +1,7 @@
 package edu.mit.rerun.utils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,14 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
     private LayoutInflater inflator;
     private Context context;
     
+    // Comparator to sort filters alphabetically
+    public class FilterComparator implements Comparator<Filter> {
+
+        public int compare(Filter item1, Filter item2) {
+            return item1.getFiltername().compareTo(item2.getFiltername());
+        }
+
+    }
     public FilterSettingsListAdapter(Context context, ArrayList<Filter> filters) {
         super(context, 0, filters);
         // TODO Auto-generated constructor stub
