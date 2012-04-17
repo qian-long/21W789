@@ -23,8 +23,8 @@ import android.widget.ImageButton;
  * 
  */
 public class ItemListActivity extends ListActivity {
-    public static final int ADD_FILTER_RESULT = 0;
-    private Context mContext = this;
+	public static final int ADD_FILTER_RESULT = 0;
+	private Context mContext = this;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class ItemListActivity extends ListActivity {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
-//				startActivity(intent);
+				//				startActivity(intent);
 				startActivityForResult(intent, ADD_FILTER_RESULT);
 			}
 		});
@@ -68,16 +68,16 @@ public class ItemListActivity extends ListActivity {
 		setListAdapter(adapter);
 
 	}
-	
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ADD_FILTER_RESULT) {
-            Intent intent = new Intent((Context)this, FilterSettingsActivity.class);
-            startActivity(intent);
-            
-        }
-    }
-	
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == ADD_FILTER_RESULT) {
+			Intent intent = new Intent((Context)this, FilterSettingsActivity.class);
+			startActivity(intent);
+
+		}
+	}
+
 
 }
