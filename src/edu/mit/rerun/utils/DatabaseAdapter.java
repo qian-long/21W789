@@ -178,4 +178,9 @@ public class DatabaseAdapter {
         Set<String> set = new HashSet<String>(Arrays.asList(words));
         return new Filter(name, (KEY_USED == "1"), set);
     }
+    
+    //TODO
+    public void setFilterUse(String filterName, boolean use) {
+        
+    }
 }

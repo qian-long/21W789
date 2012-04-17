@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.Filter;
 import edu.mit.rerun.view.EditFilterActivity;
+import edu.mit.rerun.view.ItemListActivity;
 
 public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
 
@@ -31,7 +33,6 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
 
     public FilterSettingsListAdapter(Context context, ArrayList<Filter> filters, DatabaseAdapter dbAdapter) {
         super(context, 0, filters);
-        // TODO Auto-generated constructor stub
         this.context = context;
         this.filters = filters;
         mDbAdapter = dbAdapter;
@@ -59,13 +60,25 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
             CheckBox use = (CheckBox) view.findViewById(R.id.filter_use);
 
             filterName.setText(filter.getFiltername());
+            //test
+            use.setChecked(true);
+            use.setOnClickListener(new View.OnClickListener() {
+                
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    Toast.makeText(context, "use click", Toast.LENGTH_SHORT);
+                }
+            });
+            
             edit.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(),
                             EditFilterActivity.class);
                     intent.putExtra("filterName", filter.getFiltername());
-                    context.startActivity(intent);
+//                    context.startActivity(intent);
+                    ((Activity)context).startActivityForResult(intent, ItemListActivity.ADD_FILTER_RESULT);
+
                 }
             });
 

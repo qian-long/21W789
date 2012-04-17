@@ -79,8 +79,6 @@ public class EditFilterActivity extends ListActivity {
         addKeyword.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-
                 final Dialog dialog = new Dialog(v.getContext());
                 dialog.setContentView(R.layout.dialog_keyword_input);
                 dialog.setTitle("Add Keyword");
@@ -138,17 +136,24 @@ public class EditFilterActivity extends ListActivity {
                 }
                 mDbAdapter.addFilter(filter);
                 mDbAdapter.close();
-                // TODO, fix, should finish with result save, then launch intent
-                // to FilterSettingsActivity in parent activity
-                Intent intent = new Intent(v.getContext(),
-                        FilterSettingsActivity.class);
-                startActivity(intent);
+
+                setResult(ItemListActivity.ADD_FILTER_RESULT);
+                finish();
 
             }
         });
 
     }
-
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ItemListActivity.ADD_FILTER_RESULT) {
+            Intent intent = new Intent((Context)this, FilterSettingsActivity.class);
+            startActivity(intent);
+            
+        }
+    }
     // TODO
     private boolean checkInput(String input) {
         return true;

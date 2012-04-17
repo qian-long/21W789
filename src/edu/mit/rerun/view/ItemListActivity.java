@@ -8,6 +8,7 @@ import edu.mit.rerun.model.ReuseItem;
 import edu.mit.rerun.utils.ItemListAdapter;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,8 @@ import android.widget.ImageButton;
  * 
  */
 public class ItemListActivity extends ListActivity {
-    public static final int CANCEL = 0;
+    public static final int ADD_FILTER_RESULT = 0;
+    private Context mContext = this;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +35,6 @@ public class ItemListActivity extends ListActivity {
 
 		filterButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(v.getContext(), FilterSettingsActivity.class);
 				startActivity(intent);
 			}
@@ -42,7 +43,6 @@ public class ItemListActivity extends ListActivity {
 		postButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(v.getContext(), PostItemActivity.class);
 				startActivity(intent);
 			}
@@ -51,9 +51,9 @@ public class ItemListActivity extends ListActivity {
 		addButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
-				startActivity(intent);
+//				startActivity(intent);
+				startActivityForResult(intent, ADD_FILTER_RESULT);
 			}
 		});
 		List<ReuseItem> samples = new ArrayList<ReuseItem>();
@@ -68,5 +68,16 @@ public class ItemListActivity extends ListActivity {
 		setListAdapter(adapter);
 
 	}
+	
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ADD_FILTER_RESULT) {
+            Intent intent = new Intent((Context)this, FilterSettingsActivity.class);
+            startActivity(intent);
+            
+        }
+    }
+	
 
 }

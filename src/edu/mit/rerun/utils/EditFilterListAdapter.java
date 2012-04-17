@@ -156,7 +156,6 @@ public class EditFilterListAdapter extends ArrayAdapter<String>{
 			edit.setOnClickListener(new View.OnClickListener() {
 
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					final Dialog dialog = new Dialog(v.getContext());
 					dialog.setContentView(R.layout.dialog_keyword_input);
 					dialog.setTitle("Edit Keyword");
@@ -169,7 +168,6 @@ public class EditFilterListAdapter extends ArrayAdapter<String>{
 
 						public void onClick(View v) {
 							if (checkInput(input.getText().toString().trim())) {
-								Log.i(TAG, "ADD ON CLICK");
 
 								text.setText(input.getText().toString().trim());
 							}
