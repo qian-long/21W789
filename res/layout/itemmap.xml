@@ -3,8 +3,9 @@
     android:id="@+id/mainlayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/map_detail_bubble_selector" >
+    android:background="@drawable/map_detail_bubble_selector"
+    android:orientation="vertical" >
+
     <com.google.android.maps.MapView
         android:id="@+id/mapview"
         android:layout_width="fill_parent"
