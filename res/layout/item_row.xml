@@ -12,7 +12,7 @@
         android:layout_marginRight="0dp"
         android:layout_weight="1"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/item_timestamp"
@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_weight=".90"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" android:textSize="20dp"/>
 
 </LinearLayout>

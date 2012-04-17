@@ -15,15 +15,17 @@
         android:textSize="20dp" />
 
     <Button
-        android:id="@+id/delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:text="-" />
-
-    <Button
         android:id="@+id/edit_btn"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:text="edit" />
+
+    <ImageButton
+        android:id="@+id/delete_btn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="right"
+        android:background="@drawable/remove_filter_icon"
+        android:scaleType="fitXY" />
 
 </LinearLayout>

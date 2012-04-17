@@ -16,13 +16,12 @@
             android:text="Add Another Keyword: "
             android:textSize="25dp"
             android:textStyle="bold" />
-
+
         <ImageButton
             android:id="@+id/add_keyword"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@drawable/add_filter_icon" android:minHeight="25dp" android:minWidth="25dp"/>
-
+            android:background="@drawable/add_filter_icon" />
     </LinearLayout>
 
     <LinearLayout
