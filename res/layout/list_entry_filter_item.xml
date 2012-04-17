@@ -11,8 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:text="Electronics"
-        android:textSize="25dp" />
-
+        android:textSize="25dp" />
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -24,14 +23,14 @@
             android:id="@+id/filter_delete"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="@drawable/remove_filter_icon"
+            android:background="@drawable/remove_filter_icon_selector"
             android:scaleType="fitXY" />
 
         <ImageButton
             android:id="@+id/filter_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit" />
+            android:background="@drawable/edit_selector" />
 
         <CheckBox
             android:id="@+id/filter_use"
