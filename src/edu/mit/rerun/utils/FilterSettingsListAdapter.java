@@ -1,7 +1,7 @@
 package edu.mit.rerun.utils;
 
 import java.util.ArrayList;
-
+import java.util.Comparator;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,11 +14,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.Filter;
-import edu.mit.rerun.model.ReuseItem;
 import edu.mit.rerun.view.EditFilterActivity;
-import edu.mit.rerun.view.ItemDetailActivity;
 
 public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
+
 	private ArrayList<Filter> filters;
 	private LayoutInflater inflator;
 	private Context context;
