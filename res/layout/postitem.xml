@@ -16,21 +16,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="Item Name:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
 
         <EditText
             android:id="@+id/edit_name"
-            android:layout_width="172dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10"
+            android:hint="Item Name" />
     </LinearLayout>
 
     <TextView
@@ -43,43 +37,28 @@
 
     <EditText
         android:id="@+id/edit_description"
-        android:layout_width="match_parent"
+        android:hint="Description"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".1" >
+        android:layout_gravity="top"
+        android:ems="10"
+        android:layout_weight="1"
+        android:scrollbarFadeDuration="250"
+        android:scrollbars="vertical" >
     </EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="Location:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
         <EditText
-            android:id="@+id/edit_description"
-            android:layout_width="wrap_content"
+            android:id="@+id/location"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10"
+            android:gravity="top" 
+            android:hint="Location" />
     </LinearLayout>
-
-    <!-- <LinearLayout -->
-    <!-- android:layout_width="match_parent" -->
-    <!-- android:layout_height="wrap_content" -->
-    <!-- android:gravity="center" > -->
-
-
-    <!-- <Button -->
-    <!-- android:id="@+id/picture_button" -->
-    <!-- style="?android:attr/buttonStyleSmall" -->
-    <!-- android:layout_width="wrap_content" -->
-    <!-- android:layout_height="wrap_content" -->
-    <!-- android:text="Picture" /> -->
-    <!-- </LinearLayout> -->
 
     <Button
         android:id="@+id/post_button"
