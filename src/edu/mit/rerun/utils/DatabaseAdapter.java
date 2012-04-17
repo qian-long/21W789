@@ -36,7 +36,8 @@ public class DatabaseAdapter {
     private static final String DATABASE_TABLE = "filters";
     private static final String DATABASE_CREATE = "CREATE TABLE "
             + DATABASE_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + "filterName TEXT NOT NULL, " + "keywords TEXT," + " used INTEGER);";
+            + "filterName TEXT NOT NULL, " + "keywords TEXT,"
+            + " used INTEGER);";
 
     private class DbHelper extends SQLiteOpenHelper {
 
@@ -101,7 +102,7 @@ public class DatabaseAdapter {
             String[] words = cursor.getString(2)
                     .split(Filter.KEYWORD_DELIMITER);
             Set<String> set = new HashSet<String>(Arrays.asList(words));
-            filters.add(new Filter(name,(KEY_USED == "1"),  set));
+            filters.add(new Filter(name, (KEY_USED == "1"), set));
             cursor.moveToNext();
         }
         cursor.close();
@@ -115,7 +116,7 @@ public class DatabaseAdapter {
         List<Filter> filters = new ArrayList<Filter>();
         Cursor cursor = mDb.query(DATABASE_TABLE, new String[] { KEY_ROWID,
                 KEY_FILTERNAME, KEY_FILTER_KEYWORDS, KEY_USED }, KEY_USED
-                + " equals 1", null, null, null, null);
+                + "=\'1\'", null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String name = cursor.getString(1);
@@ -128,21 +129,21 @@ public class DatabaseAdapter {
         cursor.close();
         return filters;
     }
-    
+
     /**
-     * Create a new row with Filter If row is
-     * successfully created return the new rowId for that note, otherwise return
-     * a -1 to indicate failure.
+     * Create a new row with Filter If row is successfully created return the
+     * new rowId for that note, otherwise return a -1 to indicate failure.
      * 
      * @param parseId
-     *          parseId of the printer
+     *            parseId of the printer
      * @return rowId or -1 if failed
      */
     public long addFilter(Filter filter) {
         Log.i(TAG, "adding filter");
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_FILTERNAME, filter.getFiltername());
-        initialValues.put(KEY_USED, filter.getUsedStatus());
+        initialValues.put(KEY_USED,
+                new Integer(filter.getUsedStatus()).toString());
         initialValues.put(KEY_FILTER_KEYWORDS, filter.getKeyWordsString());
 
         return mDb.insert(DATABASE_TABLE, null, initialValues);
@@ -157,30 +158,46 @@ public class DatabaseAdapter {
         return mDb.delete(DATABASE_TABLE, KEY_FILTERNAME + "=\"" + name + "\"",
                 null) > 0;
     }
-    
+
     public void close() {
         mDbHelper.close();
     }
-    
+
     /**
      * 
      * @param name
-     * @return
-     *      Filter with arg filter name
+     * @return Filter with arg filter name
      */
     public Filter getFilter(String name) {
         Cursor cursor = mDb.query(DATABASE_TABLE, new String[] { KEY_ROWID,
-                KEY_FILTERNAME, KEY_FILTER_KEYWORDS }, KEY_FILTERNAME + "=\'" + name + "\'", null, null, null,
-                null);
+                KEY_FILTERNAME, KEY_FILTER_KEYWORDS }, KEY_FILTERNAME + "=\'"
+                + name + "\'", null, null, null, null);
         cursor.moveToFirst();
-        String[] words = cursor.getString(2)
-                .split(Filter.KEYWORD_DELIMITER);
+        String[] words = cursor.getString(2).split(Filter.KEYWORD_DELIMITER);
         Set<String> set = new HashSet<String>(Arrays.asList(words));
         return new Filter(name, (KEY_USED == "1"), set);
     }
+
+    /**
+     * 
+     * @param filterName
+     * @return
+     */
+    public boolean isFilterUsed(String filterName) {
+        Cursor cursor = mDb.query(DATABASE_TABLE, new String[] { KEY_ROWID,
+                KEY_FILTERNAME, KEY_FILTER_KEYWORDS, KEY_USED }, KEY_FILTERNAME
+                + "=\'" + filterName + "\'", null, null, null, null);
+        cursor.moveToFirst();
+        return (cursor.getString(3).equals("1"));
+
+    }
+
     
-    //TODO
-    public void setFilterUse(String filterName, boolean use) {
-        
+    public boolean updatedFilterUse(String filterName, boolean use) {
+        ContentValues updatedValues = new ContentValues();
+        updatedValues.put(KEY_USED, new Integer((use) ? 1 : 0).toString());
+        return mDb.update(DATABASE_TABLE, updatedValues, KEY_FILTERNAME + "=\'"
+                + filterName + "\'", null) == 1;
+
     }
 }

@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +24,16 @@ import edu.mit.rerun.view.EditFilterActivity;
 import edu.mit.rerun.view.ItemListActivity;
 
 public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
-
+    public static final String TAG = "FilterSettingsListActivity";
     private ArrayList<Filter> filters;
     private LayoutInflater inflator;
     private Context context;
-    
-    //pointer to the database adapter
+
+    // pointer to the database adapter
     private DatabaseAdapter mDbAdapter;
 
-    public FilterSettingsListAdapter(Context context, ArrayList<Filter> filters, DatabaseAdapter dbAdapter) {
+    public FilterSettingsListAdapter(Context context,
+            ArrayList<Filter> filters, DatabaseAdapter dbAdapter) {
         super(context, 0, filters);
         this.context = context;
         this.filters = filters;
@@ -57,27 +59,45 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
                     .findViewById(R.id.filter_edit);
             ImageButton delete = (ImageButton) view
                     .findViewById(R.id.filter_delete);
-            CheckBox use = (CheckBox) view.findViewById(R.id.filter_use);
+            final CheckBox use = (CheckBox) view.findViewById(R.id.filter_use);
 
             filterName.setText(filter.getFiltername());
-            //test
-            use.setChecked(true);
+            mDbAdapter.open();
+            Log.i(TAG,
+                    filter.getFiltername() + ": "
+                            + mDbAdapter.isFilterUsed(filter.getFiltername()));
+            if (mDbAdapter.isFilterUsed(filter.getFiltername())) {
+                use.setChecked(true);
+            } else {
+                use.setChecked(false);
+            }
+            mDbAdapter.close();
             use.setOnClickListener(new View.OnClickListener() {
-                
+
                 public void onClick(View v) {
-                    // TODO Auto-generated method stub
-                    Toast.makeText(context, "use click", Toast.LENGTH_SHORT);
+                    mDbAdapter.open();
+                    if (use.isChecked()) {
+                        mDbAdapter.updatedFilterUse(filter.getFiltername(),
+                                true);
+                    } else {
+                        mDbAdapter.updatedFilterUse(filter.getFiltername(),
+                                false);
+
+                    }
+                    mDbAdapter.close();
+
                 }
             });
-            
+
             edit.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(),
                             EditFilterActivity.class);
                     intent.putExtra("filterName", filter.getFiltername());
-//                    context.startActivity(intent);
-                    ((Activity)context).startActivityForResult(intent, ItemListActivity.ADD_FILTER_RESULT);
+                    // context.startActivity(intent);
+                    ((Activity) context).startActivityForResult(intent,
+                            ItemListActivity.ADD_FILTER_RESULT);
 
                 }
             });
@@ -90,24 +110,29 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
                     confirm.setTitle("Deleting Filter");
                     confirm.setMessage("Are you sure you want to delete your "
                             + filter.getFiltername() + " filter");
-                    confirm.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
-                        
-                        public void onClick(DialogInterface dialog, int which) {
-                            String name = filters.get(position).getFiltername();
-                            filters.remove(position);
-                            mDbAdapter.open();
-                            mDbAdapter.removeFilter(name);
-                            mDbAdapter.close();
-                            notifyDataSetChanged();
-                            confirm.dismiss();
-                        }
-                    });
-                    confirm.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
-                        
-                        public void onClick(DialogInterface dialog, int which) {
-                            confirm.dismiss();
-                        }
-                    });
+                    confirm.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+                            new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    String name = filters.get(position)
+                                            .getFiltername();
+                                    filters.remove(position);
+                                    mDbAdapter.open();
+                                    mDbAdapter.removeFilter(name);
+                                    mDbAdapter.close();
+                                    notifyDataSetChanged();
+                                    confirm.dismiss();
+                                }
+                            });
+                    confirm.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                            new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    confirm.dismiss();
+                                }
+                            });
                     confirm.show();
 
                 }

@@ -17,11 +17,13 @@ public class Filter {
     public Filter(String filterName, boolean used) {
         this.filterName = filterName;
         keywords = new HashSet<String>();
+        this.used = used;
     }
     
     public Filter(String filterName, boolean used, Set<String> keywords) {
         this.filterName = filterName;
         this.keywords = keywords;
+        this.used = used;
     }
     
     public void addKeyWord(String keyword) {
@@ -54,10 +56,10 @@ public class Filter {
         }
         return builder.toString();
     }
-    public int getUsedStatus() {
-        return (this.used) ? 1:0;
-    }
     
+    public int getUsedStatus() {
+        return 1;
+    }
     //setters
     public void setUsed(boolean used) {
         this.used = used;
