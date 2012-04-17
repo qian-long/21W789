@@ -14,23 +14,13 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.Filter;
-import edu.mit.rerun.model.ReuseItem;
 import edu.mit.rerun.view.EditFilterActivity;
-import edu.mit.rerun.view.ItemDetailActivity;
 
 public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
     private ArrayList<Filter> filters;
     private LayoutInflater inflator;
     private Context context;
-    
-    // Comparator to sort filters alphabetically
-    public class FilterComparator implements Comparator<Filter> {
 
-        public int compare(Filter item1, Filter item2) {
-            return item1.getFiltername().compareTo(item2.getFiltername());
-        }
-
-    }
     public FilterSettingsListAdapter(Context context, ArrayList<Filter> filters) {
         super(context, 0, filters);
         // TODO Auto-generated constructor stub

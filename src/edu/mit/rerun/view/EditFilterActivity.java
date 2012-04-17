@@ -30,7 +30,7 @@ public class EditFilterActivity extends ListActivity {
     public static final String TAG = "EditFilterActivity";
     private Context mContext = this;
     private DatabaseAdapter mDbAdapter;
-    private Filter filter;
+    private String oldFilterName;
     private boolean newFilter = true;
 
     @Override
@@ -40,11 +40,14 @@ public class EditFilterActivity extends ListActivity {
         Bundle extras = getIntent().getExtras();
         mDbAdapter = new DatabaseAdapter(this);
         TextView header = (TextView) findViewById(R.id.header);
+        final EditText filterName = (EditText) findViewById(R.id.new_filter_name);
 
         // editing existing filter
         if (extras != null) {
-            if (extras.getString("filterName") != null) {
-                header.setText(extras.getString("filterName"));
+            oldFilterName = extras.getString("filterName");
+            if (oldFilterName != null) {
+                header.setText("Filter: " + oldFilterName);
+                filterName.setHint(oldFilterName);
                 newFilter = false;
             }
         }
@@ -59,7 +62,6 @@ public class EditFilterActivity extends ListActivity {
                 .findViewById(R.id.add_keyword);
         Button cancel = (Button) footer.findViewById(R.id.cancel_btn);
         Button save = (Button) footer.findViewById(R.id.save_filter_btn);
-        final EditText filterName = (EditText) findViewById(R.id.new_filter_name);
 
         // setListAdapter
         final ArrayList<String> rows = new ArrayList<String>();
@@ -128,6 +130,11 @@ public class EditFilterActivity extends ListActivity {
                         true, new HashSet<String>(rows));
                 mDbAdapter.open();
                 // TODO validate filter name and keywords
+                
+                //removes old filter
+                if (!newFilter && oldFilterName != null) {
+                    mDbAdapter.removeFilter(oldFilterName);
+                }
                 mDbAdapter.addFilter(filter);
                 mDbAdapter.close();
                 // TODO, fix, should finish with result save, then launch intent

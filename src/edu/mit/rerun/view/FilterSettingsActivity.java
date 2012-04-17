@@ -1,19 +1,19 @@
 package edu.mit.rerun.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.Filter;
 import edu.mit.rerun.utils.DatabaseAdapter;
 import edu.mit.rerun.utils.FilterSettingsListAdapter;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 
 /**
@@ -24,13 +24,21 @@ public class FilterSettingsActivity extends ListActivity {
     public static final String TAG = "FilterSettingsActivity";
     private DatabaseAdapter mDbAdapter;
     private List<Filter> filters;
+    
+    // Comparator to sort filters alphabetically
+    public class FilterComparator implements Comparator<Filter> {
+        
+        public int compare(Filter item1, Filter item2) {
+            return item1.getFiltername().compareTo(item2.getFiltername());
+        }
 
+    }
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.filter_settings);
         mDbAdapter = new DatabaseAdapter(this);
-
         ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
         ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
         ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
@@ -66,6 +74,8 @@ public class FilterSettingsActivity extends ListActivity {
         mDbAdapter.open();
         filters = mDbAdapter.getAllFilters();
         mDbAdapter.close();
+        
+        Collections.sort(filters, new FilterComparator());
         setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters));
     }
 
@@ -75,6 +85,7 @@ public class FilterSettingsActivity extends ListActivity {
         mDbAdapter.open();
         filters = mDbAdapter.getAllFilters();
         mDbAdapter.close();
+        Collections.sort(filters, new FilterComparator());
         setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters));
 
     }
