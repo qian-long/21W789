@@ -44,7 +44,7 @@ public class EditFilterActivity extends ListActivity {
             oldFilterName = extras.getString("filterName");
             if (oldFilterName != null) {
                 header.setText("Filter: " + oldFilterName);
-                filterName.setHint(oldFilterName);
+                filterName.setText(oldFilterName);
                 newFilter = false;
             }
         }
@@ -62,9 +62,13 @@ public class EditFilterActivity extends ListActivity {
 
         // setListAdapter
         final ArrayList<String> rows = new ArrayList<String>();
-        // rows.add("0");
-        // rows.add("1");
-        // rows.add("2");
+        if (!newFilter) {
+            mDbAdapter.open();
+            Filter filter = mDbAdapter.getFilter(oldFilterName);
+            for (String keyword: filter.getKeyWords()) {
+                rows.add(keyword);
+            }
+        }
 
         EditFilterListAdapter adapter = new EditFilterListAdapter(this, rows,
                 getParent());

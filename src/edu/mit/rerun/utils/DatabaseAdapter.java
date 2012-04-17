@@ -114,8 +114,8 @@ public class DatabaseAdapter {
     public List<Filter> getUsedFilters() {
         List<Filter> filters = new ArrayList<Filter>();
         Cursor cursor = mDb.query(DATABASE_TABLE, new String[] { KEY_ROWID,
-                KEY_FILTERNAME, KEY_FILTER_KEYWORDS, KEY_USED }, "KEY_USED "
-                + "equals 1", null, null, null, null);
+                KEY_FILTERNAME, KEY_FILTER_KEYWORDS, KEY_USED }, KEY_USED
+                + " equals 1", null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String name = cursor.getString(1);
@@ -160,5 +160,22 @@ public class DatabaseAdapter {
     
     public void close() {
         mDbHelper.close();
+    }
+    
+    /**
+     * 
+     * @param name
+     * @return
+     *      Filter with arg filter name
+     */
+    public Filter getFilter(String name) {
+        Cursor cursor = mDb.query(DATABASE_TABLE, new String[] { KEY_ROWID,
+                KEY_FILTERNAME, KEY_FILTER_KEYWORDS }, KEY_FILTERNAME + "=\'" + name + "\'", null, null, null,
+                null);
+        cursor.moveToFirst();
+        String[] words = cursor.getString(2)
+                .split(Filter.KEYWORD_DELIMITER);
+        Set<String> set = new HashSet<String>(Arrays.asList(words));
+        return new Filter(name, (KEY_USED == "1"), set);
     }
 }
