@@ -91,6 +91,7 @@ public class ItemListActivity extends ListActivity {
         }
     }
 
+
     public class RefreshListTask extends
             AsyncTask<String, byte[], List<ReuseItem>> {
         private ProgressDialog dialog;

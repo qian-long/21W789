@@ -61,7 +61,35 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:drawSelectorOnTop="false" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/forwardFilterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="95dp"
+            android:src="@drawable/arrow_back" android:background="#000000"/>
+
+        <ImageButton
+            android:id="@+id/refreshBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_popup_sync_1" android:layout_marginRight="95dp" android:background="#000000"/>
+
+        <ImageButton
+            android:id="@+id/backFilterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/arrow" android:background="#000000"/>
+    </LinearLayout>
 
 </LinearLayout>
