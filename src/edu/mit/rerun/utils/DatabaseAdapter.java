@@ -36,7 +36,7 @@ public class DatabaseAdapter {
     private static final String DATABASE_TABLE = "filters";
     private static final String DATABASE_CREATE = "CREATE TABLE "
             + DATABASE_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + "filterName TEXT NOT NULL" + "keywords TEXT" + "used INTEGER);";
+            + "filterName TEXT NOT NULL, " + "keywords TEXT," + " used INTEGER);";
 
     private class DbHelper extends SQLiteOpenHelper {
 
@@ -139,6 +139,7 @@ public class DatabaseAdapter {
      * @return rowId or -1 if failed
      */
     public long addFilter(Filter filter) {
+        Log.i(TAG, "adding filter");
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_FILTERNAME, filter.getFiltername());
         initialValues.put(KEY_USED, filter.getUsedStatus());
@@ -153,8 +154,11 @@ public class DatabaseAdapter {
      * @return True if deleted, False otherwise
      */
     public boolean removeFilter(String name) {
-        Log.i("PrintersDbAdapter", "removeFavorite()");
         return mDb.delete(DATABASE_TABLE, KEY_FILTERNAME + "=\"" + name + "\"",
                 null) > 0;
+    }
+    
+    public void close() {
+        mDbHelper.close();
     }
 }

@@ -17,12 +17,12 @@ import edu.mit.rerun.model.ReuseItem;
 import edu.mit.rerun.view.EditFilterActivity;
 import edu.mit.rerun.view.ItemDetailActivity;
 
-public class FilterListAdapter extends ArrayAdapter<Filter> {
+public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
     private ArrayList<Filter> filters;
     private LayoutInflater inflator;
     private Context context;
     
-    public FilterListAdapter(Context context, ArrayList<Filter> filters) {
+    public FilterSettingsListAdapter(Context context, ArrayList<Filter> filters) {
         super(context, 0, filters);
         // TODO Auto-generated constructor stub
         this.context = context;
