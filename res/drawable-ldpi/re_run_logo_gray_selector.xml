@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/re_run_logo_gray_glow"
+          android:state_pressed="true" />
+    <item android:drawable="@drawable/re_run_logo_gray" />
+</selector>
