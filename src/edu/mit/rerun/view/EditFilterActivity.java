@@ -2,14 +2,12 @@ package edu.mit.rerun.view;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 
 import edu.mit.rerun.R;
 import edu.mit.rerun.model.Filter;
 import edu.mit.rerun.utils.DatabaseAdapter;
 import edu.mit.rerun.utils.EditFilterListAdapter;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -21,7 +19,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;

@@ -76,7 +76,7 @@ public class FilterSettingsActivity extends ListActivity {
         mDbAdapter.close();
         
         Collections.sort(filters, new FilterComparator());
-        setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters));
+        setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters, mDbAdapter));
     }
 
     @Override
@@ -86,7 +86,7 @@ public class FilterSettingsActivity extends ListActivity {
         filters = mDbAdapter.getAllFilters();
         mDbAdapter.close();
         Collections.sort(filters, new FilterComparator());
-        setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters));
+        setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters, mDbAdapter));
 
     }
 

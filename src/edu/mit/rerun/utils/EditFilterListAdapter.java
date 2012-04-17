@@ -146,10 +146,8 @@ public class EditFilterListAdapter extends ArrayAdapter<String>{
 			delete.setOnClickListener(new View.OnClickListener() {
 
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					//                    Intent intent = new Intent(v.getContext(), EditFilterActivity.class);
-					//                    context.startActivity(intent);
-					Toast.makeText(context, "deleting keyword: " + position, Toast.LENGTH_SHORT).show();
+					keywords.remove(position);
+					notifyDataSetChanged();
 				}
 			});
 			Log.i(TAG, "set delete button listener");
