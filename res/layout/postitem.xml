@@ -67,18 +67,19 @@
             android:ems="10" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" >
+    <!-- <LinearLayout -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:gravity="center" > -->
 
-        <Button
-            android:id="@+id/picture_button"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Picture" />
-    </LinearLayout>
+
+    <!-- <Button -->
+    <!-- android:id="@+id/picture_button" -->
+    <!-- style="?android:attr/buttonStyleSmall" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:text="Picture" /> -->
+    <!-- </LinearLayout> -->
 
     <Button
         android:id="@+id/post_button"

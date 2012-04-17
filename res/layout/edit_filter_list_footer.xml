@@ -16,12 +16,13 @@
             android:text="Add Another Keyword: "
             android:textSize="25dp"
             android:textStyle="bold" />
-
+
         <ImageButton
             android:id="@+id/add_keyword"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:background="@drawable/add_filter_icon" />
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/add_filter_icon" android:minHeight="25dp" android:minWidth="25dp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -31,16 +32,14 @@
 
         <Button
             android:id="@+id/cancel_btn"
-            android:layout_width="143dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="1"
             android:text="Cancel" />
 
         <Button
             android:id="@+id/save_filter_btn"
-            android:layout_width="142dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="1"
             android:text="Save Filter" />
     </LinearLayout>
 

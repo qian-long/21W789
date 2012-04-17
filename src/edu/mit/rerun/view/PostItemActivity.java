@@ -20,27 +20,19 @@ import android.widget.Toast;
  */
 public class PostItemActivity extends Activity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.postitem);
-        Button postButton = (Button) findViewById(R.id.post_button);
-        Button pictureButton = (Button) findViewById(R.id.picture_button);
-        pictureButton.setOnClickListener(new View.OnClickListener() {
-            
-            public void onClick(View v) {
-                // TODO 
-                Toast.makeText(getApplicationContext(), "Open pictures stub", Toast.LENGTH_SHORT);
-            }
-        });
-        
-        postButton.setOnClickListener(new View.OnClickListener() {
-            
-            public void onClick(View v) {
-                // TODO 
-                Toast.makeText(getApplicationContext(), "Post Item stub", Toast.LENGTH_SHORT);
-            }
-        });
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.postitem);
+		Button postButton = (Button) findViewById(R.id.post_button);
+
+		postButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO 
+				Toast.makeText(getApplicationContext(), "Post Item stub", Toast.LENGTH_SHORT);
+			}
+		});
+	}
 
 }
