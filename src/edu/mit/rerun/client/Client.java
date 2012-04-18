@@ -31,6 +31,7 @@ import edu.mit.rerun.model.ReuseItem;
  */
 public class Client {
     public static final String GET_ITEMS_URL = "http://18.111.105.86:8000/query/";
+    public static final String RETRIEVE_ITEM_URL = "http://18.111.105.86:8000/query/?item_id=%s";
     public static final String CHANGE_FILTER_URL = "http://127.0.0.1:8080/change_filter";
     public static final String POST_ITEM_URL = "http://127.0.0.1:8080/post_item";
     public static final String ADD_USER_URL = "http://127.0.0.1:8080/add_user/";
@@ -83,6 +84,53 @@ public class Client {
         return items;
     }
 
+    public static ReuseItem getItem(String itemId) throws ClientException {
+        ReuseItem item = null;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet();
+        String uri = String.format(GET_ITEMS_URL, itemId);
+        try {
+            request.setURI(new URI(GET_ITEMS_URL));
+            HttpResponse response = client.execute(request);
+            HttpEntity entity = response.getEntity();
+            String json = Html.fromHtml(EntityUtils.toString(entity))
+                    .toString();
+            JSONTokener tokener = new JSONTokener(json);
+            JSONArray jsonArray = new JSONArray(tokener);
+//            for (int i = 0; i < jsonArray.length(); i++) {
+//                JSONObject object = jsonArray.getJSONObject(i);
+//                String id = object.getString("pk");
+//                JSONObject fields = object.getJSONObject("fields");
+//                items.add(new ReuseItem(id, fields.getString("sender"), fields
+//                        .getString("title"), fields.getString("description"),
+//                        fields.getString("location"), fields.getString("time"),
+//                        fields.getInt("latitude"), fields.getInt("longitude")));
+//
+//            }
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new ClientException("URISyntaxException");
+
+        } catch (ClientProtocolException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new ClientException("ClientProtocolException");
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new ClientException("IOException");
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new ClientException("JSONEXception");
+
+        }
+
+        return item;
+    }
     public static void addFilter(String userId, Filter filter) {
 
     }

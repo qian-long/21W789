@@ -32,7 +32,7 @@ public class ItemListAdapter extends ArrayAdapter<ReuseItem>{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
-		ReuseItem item = items.get(position);
+		final ReuseItem item = items.get(position);
 		if (item != null) {
 			view = inflator.inflate(R.layout.item_row, null);
 			view.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +40,7 @@ public class ItemListAdapter extends ArrayAdapter<ReuseItem>{
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
+					intent.putExtra("item_id", item.getId());
 					context.startActivity(intent);
 				}
 			});
