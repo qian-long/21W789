@@ -41,7 +41,7 @@ public class ItemListActivity extends ListActivity {
         ImageButton filterButton = (ImageButton) findViewById(R.id.filterButton);
         ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
         ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
-
+        ImageButton refreshButton = (ImageButton) findViewById(R.id.refreshBtn);
         filterButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),
@@ -68,7 +68,21 @@ public class ItemListActivity extends ListActivity {
                 startActivityForResult(intent, ADD_FILTER_RESULT);
             }
         });
+        
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                RefreshListTask task = new RefreshListTask();
+                if (((ItemListActivity)v.getContext()).isConnected(v.getContext())) {
+                    //TODO: get actual username
+                    task.execute("");
 
+                } else {
+                    Toast.makeText(mContext, "Internet Error", Toast.LENGTH_SHORT);
+                }
+            }
+        });
+        
         RefreshListTask task = new RefreshListTask();
         if (isConnected(this)) {
             //TODO: get actual username
