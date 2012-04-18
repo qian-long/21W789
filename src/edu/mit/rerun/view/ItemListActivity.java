@@ -108,12 +108,13 @@ public class ItemListActivity extends ListActivity {
 			public void onClick(View v) {
 				dba.open();
 				currentFilterIndex++;
-				if (currentFilterIndex == dba.getAllFilters().size()) {
-					filterName.setText("Show All");
+					
+				if ((dba.getUsedFilters().size() != 0) && (currentFilterIndex == dba.getUsedFilters().size())) {					
 					currentFilterIndex = 0;
 				}
-				final Filter filter = dba.getAllFilters().get(currentFilterIndex);
+				final Filter filter = dba.getUsedFilters().get(currentFilterIndex);
 				String displayName = filter.getFiltername();
+
 				filterName.setText(displayName);
 				currentFilter = filter;
 				dba.close();
@@ -121,10 +122,11 @@ public class ItemListActivity extends ListActivity {
                 RefreshListTask task = new RefreshListTask();
                 if (isConnected(v.getContext())) {
                     //TODO: get actual username
+                    Log.i(TAG, filter.getFiltername() + " : " + filter.getKeyWordsString());
                     task.execute(filter);
 
                 } else {
-                    Toast.makeText(v.getContext(), "Internet Error", Toast.LENGTH_SHORT);
+                    Toast.makeText(v.getContext(), "Internet Error", Toast.LENGTH_SHORT).show();
                 }
 			}
 		});
@@ -134,10 +136,11 @@ public class ItemListActivity extends ListActivity {
 				dba.open();
 				currentFilterIndex--;
 				if (currentFilterIndex < 0 ) {
-					currentFilterIndex = dba.getAllFilters().size()-1;
+					currentFilterIndex = dba.getUsedFilters().size()-1;
 				}
-                final Filter filter = dba.getAllFilters().get(currentFilterIndex);
+                final Filter filter = dba.getUsedFilters().get(currentFilterIndex);
 				String displayName = filter.getFiltername();
+
 				filterName.setText(displayName);
 				currentFilter = filter;
 				dba.close();	
@@ -203,9 +206,11 @@ public class ItemListActivity extends ListActivity {
 			List<ReuseItem> items = null;
 			try {
 			    if (params[0] == null) {
+			        Log.i("RefreshListTask", "filter null");
 			        items = Client.getItemList("");
 			    }
 			    else {
+			        Log.i("RefreshListTask", "filter not null");
 			        items = Client.getFilteredItems("", params[0]);
 			    }
 			} catch (ClientException e) {

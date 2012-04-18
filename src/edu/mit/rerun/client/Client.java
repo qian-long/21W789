@@ -93,6 +93,7 @@ public class Client {
         JSONObject obj = new JSONObject();
         try {
             obj.put(filter.getFiltername(), filter.getKeyWordsString());
+            Log.i(TAG, obj.toString());
             StringEntity stringentity = new StringEntity(obj.toString());
             HttpClient client = new DefaultHttpClient();
             HttpPost postRequest = new HttpPost();
@@ -108,8 +109,10 @@ public class Client {
             JSONTokener tokener = new JSONTokener(json);
             JSONArray jsonArray = new JSONArray(tokener);
             for (int i = 0; i < jsonArray.length(); i++) {
+                
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString("pk");
+                Log.i(TAG, id);
                 JSONObject fields = object.getJSONObject("fields");
                 items.add(new ReuseItem(id, fields.getString("sender"), fields
                         .getString("title"), fields.getString("description"),

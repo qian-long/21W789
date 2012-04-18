@@ -126,26 +126,33 @@ public class EditFilterActivity extends ListActivity {
         save.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Filter filter = new Filter(filterName.getText().toString(),
-                        true, new HashSet<String>(rows));
-                mDbAdapter.open();
-                // TODO validate filter name
+             // validates filter name as alphanumeric
+                String filterNameStr = filterName.getText().toString();
 
-                // removes old filter
-                if (!newFilter && oldFilterName != null) {
-                    mDbAdapter.removeFilter(oldFilterName);
+                if (!filterNameStr.matches("[\\p{Alnum}[\\-]]*")) {
+                    //error- non-alphanumerics found
+                    Toast.makeText(v.getContext(), "Filter name contains invalid characters, please use alphanumeric characters only", Toast.LENGTH_SHORT).show();
                 }
-                if (!mDbAdapter.filterExist(filter.getFiltername())) {
-                    mDbAdapter.addFilter(filter);
-                    mDbAdapter.close();
+                else {
 
-                    setResult(ItemListActivity.ADD_FILTER_RESULT);
-                    finish();
-                } else {
-                    Toast.makeText(v.getContext(), "Filter already exists, please enter another filter name",
-                            Toast.LENGTH_SHORT).show();
+                    Filter filter = new Filter(filterNameStr,true, new HashSet<String>(rows));
+                    mDbAdapter.open();
+
+                    // removes old filter
+                    if (!newFilter && oldFilterName != null) {
+                        mDbAdapter.removeFilter(oldFilterName);
+                    }
+                    if (!mDbAdapter.filterExist(filter.getFiltername())) {
+                        mDbAdapter.addFilter(filter);
+                        mDbAdapter.close();
+
+                        setResult(ItemListActivity.ADD_FILTER_RESULT);
+                        finish();
+                    } else {
+                        Toast.makeText(v.getContext(), "Filter already exists, please enter another filter name",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
-
             }
         });
 
@@ -162,12 +169,18 @@ public class EditFilterActivity extends ListActivity {
         }
     }
 
-    // TODO, check to see that keyword is unique
-    private boolean checkKeywordInput(String input) {
-        boolean valid = true;
-        if (input == null || input.length() == 0) {
-            valid = false;
-        }
-        return valid;
-    }
+
+	// TODO, check to see that keyword is unique
+	private boolean checkKeywordInput(String input) {
+		boolean valid = true;
+		
+		// validates keyword name as alphanumeric
+		if (!input.matches("[\\p{Alnum}[\\-]]*")) {
+			valid = false;
+		}
+		if (input == null || input.length() == 0) {
+			valid = false;
+		}
+		return valid;
+	}
 }

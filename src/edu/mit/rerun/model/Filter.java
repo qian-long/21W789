@@ -56,9 +56,11 @@ public class Filter {
      */
     public String getKeyWordsString() {
         StringBuilder builder = new StringBuilder();
-        for (String keyword: keywords) {
-            builder.append(keyword + KEYWORD_DELIMITER);
+        List<String> keywords = getKeyWords();
+        for (int i=0; i < keywords.size()-1; i++) {
+            builder.append(keywords.get(i)+ KEYWORD_DELIMITER);
         }
+        builder.append(keywords.get(keywords.size()-1));
         return builder.toString();
     }
     
