@@ -49,6 +49,11 @@ public class Filter {
         return words;
     }
     
+    /**
+     * 
+     * @return
+     *      keywords separated by comma
+     */
     public String getKeyWordsString() {
         StringBuilder builder = new StringBuilder();
         for (String keyword: keywords) {
@@ -58,7 +63,7 @@ public class Filter {
     }
     
     public int getUsedStatus() {
-        return 1;
+        return used ? 1:0;
     }
     //setters
     public void setUsed(boolean used) {

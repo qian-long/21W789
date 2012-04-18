@@ -67,6 +67,7 @@ public class EditFilterActivity extends ListActivity {
             for (String keyword : filter.getKeyWords()) {
                 rows.add(keyword);
             }
+            mDbAdapter.close();
         }
 
         EditFilterListAdapter adapter = new EditFilterListAdapter(this, rows,
@@ -117,6 +118,7 @@ public class EditFilterActivity extends ListActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                mDbAdapter.close();
                 finish();
             }
         });
@@ -127,7 +129,7 @@ public class EditFilterActivity extends ListActivity {
                 Filter filter = new Filter(filterName.getText().toString(),
                         true, new HashSet<String>(rows));
                 mDbAdapter.open();
-                // TODO validate filter name and keywords
+                // TODO validate filter name
 
                 // removes old filter
                 if (!newFilter && oldFilterName != null) {

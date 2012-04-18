@@ -6,6 +6,7 @@ import java.util.List;
 import edu.mit.rerun.R;
 import edu.mit.rerun.client.Client;
 import edu.mit.rerun.client.ClientException;
+import edu.mit.rerun.model.Filter;
 import edu.mit.rerun.model.ReuseItem;
 import edu.mit.rerun.utils.DatabaseAdapter;
 import edu.mit.rerun.utils.ItemListAdapter;
@@ -37,8 +38,11 @@ public class ItemListActivity extends ListActivity {
 	public static final int ADD_FILTER_RESULT = 0;
     public static final String TAG = "ItemListActivity";
 	private Context mContext = this;
-	public DatabaseAdapter dba;
+	private DatabaseAdapter dba;
 	private int currentFilterIndex = 0;
+ 
+	//points to current filter used, null means no filter used
+	private Filter currentFilter = null; 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,15 @@ public class ItemListActivity extends ListActivity {
 			public void onClick(View v) {
 				filterName.setText("All Items");
 				//TODO- actually hook up to filters
+				currentFilter = null;
+                RefreshListTask task = new RefreshListTask();
+                if (isConnected(v.getContext())) {
+                    //TODO: get actual username
+                    task.execute(currentFilter);
+
+                } else {
+                    Toast.makeText(v.getContext(), "Internet Error", Toast.LENGTH_SHORT);
+                }
 			}
 		});
 
@@ -99,12 +112,20 @@ public class ItemListActivity extends ListActivity {
 					filterName.setText("Show All");
 					currentFilterIndex = 0;
 				}
-				String displayName = dba.getAllFilters().get(currentFilterIndex).getFiltername();
+				final Filter filter = dba.getAllFilters().get(currentFilterIndex);
+				String displayName = filter.getFiltername();
 				filterName.setText(displayName);
-
+				currentFilter = filter;
 				dba.close();
 
-				//TODO- actually hook up to filters
+                RefreshListTask task = new RefreshListTask();
+                if (isConnected(v.getContext())) {
+                    //TODO: get actual username
+                    task.execute(filter);
+
+                } else {
+                    Toast.makeText(v.getContext(), "Internet Error", Toast.LENGTH_SHORT);
+                }
 			}
 		});
 
@@ -115,21 +136,30 @@ public class ItemListActivity extends ListActivity {
 				if (currentFilterIndex < 0 ) {
 					currentFilterIndex = dba.getAllFilters().size()-1;
 				}
-				String displayName = dba.getAllFilters().get(currentFilterIndex).getFiltername();
+                final Filter filter = dba.getAllFilters().get(currentFilterIndex);
+				String displayName = filter.getFiltername();
 				filterName.setText(displayName);
-				dba.close();			
+				currentFilter = filter;
+				dba.close();	
+				
+                RefreshListTask task = new RefreshListTask();
+                if (isConnected(v.getContext())) {
+                    //TODO: get actual username
+                    task.execute(filter);
+
+                } else {
+                    Toast.makeText(v.getContext(), "Internet Error", Toast.LENGTH_SHORT);
+                }
 			}
-			//TODO- actually hook up to filters
 		});
 
 		refreshButton.setOnClickListener(new View.OnClickListener() {
             
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 RefreshListTask task = new RefreshListTask();
                 if (isConnected(v.getContext())) {
                     //TODO: get actual username
-                    task.execute("");
+                    task.execute(currentFilter);
 
                 } else {
                     Toast.makeText(v.getContext(), "Internet Error", Toast.LENGTH_SHORT);
@@ -140,7 +170,7 @@ public class ItemListActivity extends ListActivity {
 		RefreshListTask task = new RefreshListTask();
 		if (isConnected(this)) {
 			//TODO: get actual username
-			task.execute("");
+			task.execute(currentFilter);
 
 		} else {
 			Toast.makeText(this, "Internet Error", Toast.LENGTH_SHORT);
@@ -158,7 +188,7 @@ public class ItemListActivity extends ListActivity {
         }
     }
 	public class RefreshListTask extends
-	AsyncTask<String, byte[], List<ReuseItem>> {
+	AsyncTask<Filter, byte[], List<ReuseItem>> {
 		private ProgressDialog dialog;
 
 		@Override
@@ -168,13 +198,19 @@ public class ItemListActivity extends ListActivity {
 		}
 
 		@Override
-		protected List<ReuseItem> doInBackground(String... params) {
+		protected List<ReuseItem> doInBackground(Filter... params) {
 			// TODO Auto-generated method stub
 			List<ReuseItem> items = null;
 			try {
-				items = Client.getItemList(params[0]);
+			    if (params[0] == null) {
+			        items = Client.getItemList("");
+			    }
+			    else {
+			        items = Client.getFilteredItems("", params[0]);
+			    }
 			} catch (ClientException e) {
-				// e.printStackTrace();               
+				// e.printStackTrace();     
+			    Log.i(TAG, e.getMessage());
 			}
 			return items;
 		}
