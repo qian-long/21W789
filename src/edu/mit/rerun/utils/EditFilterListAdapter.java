@@ -164,8 +164,8 @@ public class EditFilterListAdapter extends ArrayAdapter<String>{
 					Button addBtn = (Button) dialog.findViewById(R.id.save_btn);
 					Button cancelBtn = (Button) dialog.findViewById(R.id.cancel_btn);
 					final EditText input = (EditText) dialog.findViewById(R.id.keyword_input);
+					
 					addBtn.setOnClickListener(new View.OnClickListener() {
-
 						public void onClick(View v) {
 							if (checkInput(input.getText().toString().trim())) {
 

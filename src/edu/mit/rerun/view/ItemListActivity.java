@@ -35,7 +35,7 @@ public class ItemListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_item_list);
-
+		
 		Button showAllButton = (Button) findViewById(R.id.showAllBtn);
 
 		ImageButton filterButton = (ImageButton) findViewById(R.id.filterButton);
@@ -47,9 +47,12 @@ public class ItemListActivity extends ListActivity {
 		ImageButton refreshButton = (ImageButton) findViewById(R.id.refreshBtn);
 
 		final TextView filterName = (TextView) findViewById(R.id.filterName);
-
+		
 		dba = new DatabaseAdapter(mContext);
 
+		//TODO- should be set to whatever the user left the filter as
+		filterName.setText("Show All");
+		
 		showAllButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				filterName.setText("All Items");

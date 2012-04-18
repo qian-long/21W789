@@ -89,5 +89,4 @@ public class FilterSettingsActivity extends ListActivity {
 		setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters, mDbAdapter));
 
 	}
-
 }
