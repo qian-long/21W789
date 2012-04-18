@@ -41,6 +41,8 @@ public class ItemListAdapter extends ArrayAdapter<ReuseItem>{
 					// TODO Auto-generated method stub
 					Intent intent = new Intent(v.getContext(), ItemDetailActivity.class);
 					intent.putExtra("item_id", item.getId());
+					intent.putExtra("title", item.getTitle());
+					intent.putExtra("description", item.getDescription());
 					context.startActivity(intent);
 				}
 			});
