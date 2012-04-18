@@ -95,11 +95,11 @@ public class ItemListActivity extends ListActivity {
 			public void onClick(View v) {
 				dba.open();
 				currentFilterIndex++;
-				if (currentFilterIndex == dba.getAllFilters().size()) {
-					filterName.setText("Show All");
+					
+				if ((dba.getUsedFilters().size() != 0) && (currentFilterIndex == dba.getUsedFilters().size())) {					
 					currentFilterIndex = 0;
 				}
-				String displayName = dba.getAllFilters().get(currentFilterIndex).getFiltername();
+				String displayName = dba.getUsedFilters().get(currentFilterIndex).getFiltername();
 				filterName.setText(displayName);
 
 				dba.close();
@@ -113,9 +113,9 @@ public class ItemListActivity extends ListActivity {
 				dba.open();
 				currentFilterIndex--;
 				if (currentFilterIndex < 0 ) {
-					currentFilterIndex = dba.getAllFilters().size()-1;
+					currentFilterIndex = dba.getUsedFilters().size()-1;
 				}
-				String displayName = dba.getAllFilters().get(currentFilterIndex).getFiltername();
+				String displayName = dba.getUsedFilters().get(currentFilterIndex).getFiltername();
 				filterName.setText(displayName);
 				dba.close();			
 			}
