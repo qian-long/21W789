@@ -30,11 +30,14 @@ public class ItemListActivity extends ListActivity {
 	private Context mContext = this;
 	public DatabaseAdapter dba;
 	private int currentFilterIndex = 0;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_item_list);
+
+		Button showAllButton = (Button) findViewById(R.id.showAllBtn);
+
 		ImageButton filterButton = (ImageButton) findViewById(R.id.filterButton);
 		ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
 		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
@@ -44,9 +47,16 @@ public class ItemListActivity extends ListActivity {
 		ImageButton refreshButton = (ImageButton) findViewById(R.id.refreshBtn);
 
 		final TextView filterName = (TextView) findViewById(R.id.filterName);
-		
+
 		dba = new DatabaseAdapter(mContext);
-		
+
+		showAllButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				filterName.setText("All Items");
+				//TODO- actually hook up to filters
+			}
+		});
+
 		filterButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), FilterSettingsActivity.class);
@@ -68,21 +78,24 @@ public class ItemListActivity extends ListActivity {
 				startActivityForResult(intent, ADD_FILTER_RESULT);
 			}
 		});
-		
+
 		forwardFilterButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				dba.open();
 				currentFilterIndex++;
 				if (currentFilterIndex == dba.getAllFilters().size()) {
+					filterName.setText("Show All");
 					currentFilterIndex = 0;
 				}
 				String displayName = dba.getAllFilters().get(currentFilterIndex).getFiltername();
 				filterName.setText(displayName);
-				
+
 				dba.close();
+
+				//TODO- actually hook up to filters
 			}
 		});
-		
+
 		backFilterButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				dba.open();
@@ -92,9 +105,11 @@ public class ItemListActivity extends ListActivity {
 				}
 				String displayName = dba.getAllFilters().get(currentFilterIndex).getFiltername();
 				filterName.setText(displayName);
-				dba.close();			}
+				dba.close();			
+			}
+			//TODO- actually hook up to filters
 		});
-		
+
 		List<ReuseItem> samples = new ArrayList<ReuseItem>();
 		samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
 		samples.add(new ReuseItem("id", "sender", "title", "description", "location", "4/16/2012", 123456, 234456));
@@ -117,6 +132,6 @@ public class ItemListActivity extends ListActivity {
 
 		}
 	}
-	
-	
+
+
 }
