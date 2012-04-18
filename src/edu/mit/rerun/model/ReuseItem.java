@@ -5,7 +5,7 @@ package edu.mit.rerun.model;
  * description
  * 
  */
-public class ReuseItem {
+public class ReuseItem  {
     private String id;
     private String sender;
     private String title;
@@ -61,4 +61,5 @@ public class ReuseItem {
     public int getLongitude() {
         return longitude;
     }
+
 }

@@ -34,10 +34,10 @@ import edu.mit.rerun.model.ReuseItem;
  */
 public class Client {
     public static final String TAG = "CLIENT";
-    public static final String GET_ITEMS_URL = "http://18.111.105.86:8000/query/";
-    public static final String RETRIEVE_ITEM_URL = "http://18.111.105.86:8000/query/?item_id=%s";
+    public static final String GET_ITEMS_URL = "http://qlong.scripts.mit.edu/rerun/query/";
+//    public static final String RETRIEVE_ITEM_URL = "http://18.111.105.86:8000/query/?item_id=%s";
     public static final String CHANGE_FILTER_URL = "http://127.0.0.1:8080/change_filter";
-    public static final String POST_ITEM_URL = "http://127.0.0.1:8080/post_item";
+    public static final String POST_ITEM_URL = "http://qlong.scripts.mit.edu/rerun/post_item/";
     public static final String ADD_USER_URL = "http://127.0.0.1:8080/add_user/";
 
     public static List<ReuseItem> getItemList(String userId) throws ClientException {
@@ -216,13 +216,61 @@ public class Client {
 
     }
 
-    public static void postItem(String userId, ReuseItem item) {
+    /**
+     * 
+     * @param userId
+     * @param params
+     * @return
+     *      True of post successful, False otherwise
+     * @throws ClientException 
+     */
+    public static boolean postItem(String userId, ReuseItem params) throws ClientException {
+        boolean success = false;
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id", params.getId());
+            obj.put("title", params.getTitle());
+            obj.put("sender", params.getSender());
+            obj.put("description", params.getDescription());
+            obj.put("location", params.getLocation());
+            obj.put("latitude", params.getLatitude());
+            obj.put("longitude", params.getLongitude());
+            StringEntity stringentity = new StringEntity(obj.toString());
 
+            HttpClient client = new DefaultHttpClient();
+            HttpPost postRequest = new HttpPost();
+            postRequest.setURI(new URI(POST_ITEM_URL));
+
+            postRequest.addHeader("Accept", "application/json");
+            postRequest.addHeader("Content-type", "application/json");
+            postRequest.setEntity(stringentity);
+            HttpResponse response = client.execute(postRequest);
+            if (response.getStatusLine().getStatusCode() == 200) {
+                success = true;
+            }
+            
+        } catch (JSONException e) {
+            e.printStackTrace();
+            throw new ClientException("JSONException");
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            throw new ClientException("UnsupportedEncodingException");
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            throw new ClientException("URISyntaxException");
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+            throw new ClientException("CliendProtocolException");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ClientException("IOException");
+
+        }
+        return success;
     }
 
-    public static void addUser(String userId, String email, String password) {
-        HttpClient client = new DefaultHttpClient();
-        HttpPost postRequest = new HttpPost();
-        // postRequest.setParams(params)
-    }
 }

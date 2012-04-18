@@ -12,6 +12,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="25dp" />
 
+    <TextView
+        android:id="@+id/item_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="20dp" />
+        
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

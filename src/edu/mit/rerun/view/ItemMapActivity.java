@@ -33,7 +33,12 @@ public class ItemMapActivity extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.itemmap);
-
+        Bundle extras = getIntent().getExtras();
+        final String title = extras.getString("title");
+        final String description = extras.getString("description");
+        final String location = extras.getString("location");
+        final int latitude = extras.getInt("latitude");
+        final int longitude = extras.getInt("longitude");
         // dummy data
         List<ReuseItem> items = new ArrayList<ReuseItem>();
         items.add(new ReuseItem("id1", "sender1", "title1", "description1", "location1", "4/16/2012", 42358881,-71090137));

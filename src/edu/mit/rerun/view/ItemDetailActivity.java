@@ -41,6 +41,7 @@ public class ItemDetailActivity extends Activity{
         ImageButton mapButton = (ImageButton)findViewById(R.id.see_map_button);
         ImageButton claimButton = (ImageButton)findViewById(R.id.claim_button);
         TextView titleView = (TextView) findViewById(R.id.item_name);
+        TextView locationView = (TextView) findViewById(R.id.item_location);
         TextView descriptionView = (TextView) findViewById(R.id.item_description);
         mapButton.setOnClickListener(new View.OnClickListener() {
 
@@ -65,6 +66,7 @@ public class ItemDetailActivity extends Activity{
         });
         
         titleView.setText(title);
+        locationView.setText(location);
         descriptionView.setText(description);
 
     }
