@@ -43,6 +43,9 @@ public class ItemListAdapter extends ArrayAdapter<ReuseItem>{
 					intent.putExtra("item_id", item.getId());
 					intent.putExtra("title", item.getTitle());
 					intent.putExtra("description", item.getDescription());
+					intent.putExtra("location", item.getLocation());
+					intent.putExtra("latitude", item.getLatitude());
+					intent.putExtra("longitude", item.getLongitude());
 					context.startActivity(intent);
 				}
 			});

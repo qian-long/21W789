@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -37,15 +38,27 @@ public class ItemDetailActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_detail);
         
-        itemId = getIntent().getExtras().getString("item_id");
+        Bundle extras = getIntent().getExtras();
+        itemId = extras.getString("item_id");
+        final String title = extras.getString("title");
+        final String description = extras.getString("description");
+        final String location = extras.getString("location");
+        final int latitude = extras.getInt("latitude");
+        final int longitude = extras.getInt("longitude");
+        
         ImageButton mapButton = (ImageButton)findViewById(R.id.see_map_button);
         ImageButton claimButton = (ImageButton)findViewById(R.id.claim_button);
-        
+        TextView titleView = (TextView) findViewById(R.id.item_name);
+        TextView descriptionView = (TextView) findViewById(R.id.item_description);
         mapButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ItemMapActivity.class);
-                intent.putExtra("item_id", itemId);
+                intent.putExtra("title", title);
+                intent.putExtra("description", description);
+                intent.putExtra("location", location);
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longitude", longitude);
                 startActivity(intent);
             }
             
@@ -58,6 +71,9 @@ public class ItemDetailActivity extends Activity{
                 Toast.makeText(v.getContext(), "Item Claimed Stub", Toast.LENGTH_SHORT).show();
             }
         });
+        
+        titleView.setText(title);
+        descriptionView.setText(description);
 
     }
     
