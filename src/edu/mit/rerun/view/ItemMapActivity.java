@@ -19,6 +19,7 @@ import edu.mit.rerun.view.ItemListActivity.RefreshListTask;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -67,12 +68,14 @@ public class ItemMapActivity extends MapActivity {
         }
     }
 
+    
     @Override
     protected boolean isRouteDisplayed() {
         return false;
     }
 
     private void refreshMap(List<ReuseItem> objects) {
+        
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapOverlays = mapView.getOverlays();
@@ -148,6 +151,20 @@ public class ItemMapActivity extends MapActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ItemDetailActivity.ITEM_DELETE) {
+            RefreshListTask task = new RefreshListTask();
+            if (isConnected(this)) {
+                // TODO: get actual username
+                task.execute();
+
+            } else {
+                Toast.makeText(this, "Internet Error", Toast.LENGTH_SHORT);
+            }
+        }
+    }
     /**
      * Checks to see if user is connected to wifi or 3g
      * 

@@ -35,6 +35,7 @@ import edu.mit.rerun.model.ReuseItem;
 public class Client {
     public static final String TAG = "CLIENT";
     public static final String GET_ITEMS_URL = "http://qlong.scripts.mit.edu/rerun/query/";
+    public static final String DELETE_ITEM_URL = "http://qlong.scripts.mit.edu/rerun/delete_item/?item_id=%s";
 //    public static final String RETRIEVE_ITEM_URL = "http://18.111.105.86:8000/query/?item_id=%s";
     public static final String CHANGE_FILTER_URL = "http://127.0.0.1:8080/change_filter";
     public static final String POST_ITEM_URL = "http://qlong.scripts.mit.edu/rerun/post_item/";
@@ -88,6 +89,7 @@ public class Client {
         return items;
     }
 
+    
     public static List<ReuseItem> getFilteredItems(String username, Filter filter) throws ClientException {
         List<ReuseItem> items = new ArrayList<ReuseItem>();
         JSONObject obj = new JSONObject();
@@ -214,6 +216,39 @@ public class Client {
     public static void removeKeyWordfromFilter(String userId,
             String filterName, String keyword) {
 
+    }
+    
+    /**
+     * Deletes item from the backend server
+     * @param itemId
+     * @return
+     * @throws ClientException
+     */
+    public static boolean deleteItem(String itemId) throws ClientException {
+        boolean success = false;
+        String uri = String.format(DELETE_ITEM_URL, itemId);
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet();
+        try {
+            request.setURI(new URI(uri));
+            HttpResponse response = client.execute(request);
+            if (response.getStatusLine().getStatusCode() == 200) {
+                success = true;
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            throw new ClientException("URISyntaxException");
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+            throw new ClientException("ClientProtocolException");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ClientException("IOException");
+
+        }
+        return success;
     }
 
     /**
