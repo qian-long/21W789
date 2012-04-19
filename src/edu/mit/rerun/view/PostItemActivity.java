@@ -73,20 +73,45 @@ public class PostItemActivity<ReuseItem> extends Activity implements
                 // Toast.makeText(getApplicationContext(),
                 // "Item Posted \n " + "Lat: " + lat + " Lon:" + lon,
                 // Toast.LENGTH_SHORT).show();
+                int latitude = 0;
+                int longitude = 0;
+                
+                Location loc = mlocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                
+                if (loc == null) {
+                    loc = mlocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                }
+                if (((int) (loc.getLatitude() * 1E6)) != 0) {
+                    latitude = (int)(loc.getLatitude() * 1E6);
+                }
+                if ((int) (loc.getLongitude() * 1E6) != 0) {
+                    longitude = (int) (loc.getLongitude() * 1E6);
+                }
                 PostTask post = new PostTask();
                 post.execute(new edu.mit.rerun.model.ReuseItem("stubid", "stubsender",
                 itemTitle.getText().toString(), itemDescription
                         .getText().toString(), itemLocation.getText()
-                        .toString(), "stubtime", 0, 0));
+                        .toString(), "stubtime", latitude, longitude));
 
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+      super.onResume();
+      mlocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20*1000, 10, this);
+      mlocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+    }
+
+    @Override
+    protected void onPause() {
+      super.onPause();
+      mlocationManager.removeUpdates(this); //<8>
+    }
+    
     public void onLocationChanged(Location location) {
         // TODO Auto-generated method stub
-        lat = (int) (location.getLatitude() * 10E6);
-        lon = (int) (location.getLongitude() * 10E6);
     }
 
     public void onProviderDisabled(String provider) {

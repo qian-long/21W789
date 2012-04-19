@@ -15,6 +15,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.MapView.LayoutParams;
 
 import edu.mit.rerun.R;
+import edu.mit.rerun.model.ReuseItem;
 
 
 
@@ -138,7 +139,13 @@ public class ReuseItemizedOverlay extends ItemizedOverlay<ReuseItemOverlayItem> 
      */
     protected void handleTap(ReuseItemOverlayItem item) {
         Intent intent = new Intent(mContext, ItemDetailActivity.class);
-        intent.putExtra("id", item.getId());
+        ReuseItem ri = item.getReuseItem();
+        intent.putExtra("item_id", ri.getId());
+        intent.putExtra("title", ri.getTitle());
+        intent.putExtra("location", ri.getLocation());
+        intent.putExtra("description", ri.getDescription());
+        intent.putExtra("latitude", ri.getLatitude());
+        intent.putExtra("latitude", ri.getLongitude());
         mContext.startActivity(intent);
 
     }
