@@ -37,7 +37,7 @@ public class EditFilterActivity extends ListActivity {
         mDbAdapter = new DatabaseAdapter(this);
         TextView header = (TextView) findViewById(R.id.header);
         final EditText filterName = (EditText) findViewById(R.id.new_filter_name);
-
+        
         // editing existing filter
         if (extras != null) {
             oldFilterName = extras.getString("filterName");
@@ -128,12 +128,13 @@ public class EditFilterActivity extends ListActivity {
         save.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-             // validates filter name as alphanumeric
+             // validates filter name as alphanumeric and non-null
                 String filterNameStr = filterName.getText().toString();
 
-                if (!filterNameStr.matches("[\\p{Alnum}[\\-]]*")) {
+                if (!filterNameStr.matches("[\\p{Alnum}[\\-]]*") || filterNameStr.matches("")) {
                     //error- non-alphanumerics found
-                    Toast.makeText(v.getContext(), "Filter name contains invalid characters, please use alphanumeric characters only", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Filter name contains invalid characters or is empty, please use alphanumeric characters only", Toast.LENGTH_SHORT).show();
+                    
                 }
                 else {
 
