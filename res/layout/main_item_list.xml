@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#000000"
-            android:src="@drawable/arrow_back" />
+            android:src="@drawable/arrow_back_selector" />
 
         <ImageButton
             android:id="@+id/refreshBtn"
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#000000"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow_selector" />
     </LinearLayout>
 
 </LinearLayout>

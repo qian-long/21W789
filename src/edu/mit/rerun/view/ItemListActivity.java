@@ -34,271 +34,307 @@ import android.widget.Toast;
  */
 public class ItemListActivity extends ListActivity {
 
-    public static final int ADD_FILTER_RESULT = 0;
-    public static final String TAG = "ItemListActivity";
-    private Context mContext = this;
-    private DatabaseAdapter dba;
-    private int currentFilterIndex = 0;
+	public static final int ADD_FILTER_RESULT = 0;
+	public static final String TAG = "ItemListActivity";
+	private Context mContext = this;
+	private DatabaseAdapter dba;
+	private int currentFilterIndex = 0;
 
-    // points to current filter used, null means no filter used
-    private Filter currentFilter = null;
+	// points to current filter used, null means no filter used
+	private Filter currentFilter = null;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_item_list);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main_item_list);
 
-        Button showAllButton = (Button) findViewById(R.id.showAllBtn);
+		Button showAllButton = (Button) findViewById(R.id.showAllBtn);
 
-        ImageButton filterButton = (ImageButton) findViewById(R.id.filterButton);
-        ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
-        ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+		ImageButton filterButton = (ImageButton) findViewById(R.id.filterButton);
+		ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
+		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
 
-        ImageButton forwardFilterButton = (ImageButton) findViewById(R.id.forwardFilterBtn);
-        ImageButton backFilterButton = (ImageButton) findViewById(R.id.backFilterBtn);
-        ImageButton refreshButton = (ImageButton) findViewById(R.id.refreshBtn);
+		ImageButton forwardFilterButton = (ImageButton) findViewById(R.id.forwardFilterBtn);
+		ImageButton backFilterButton = (ImageButton) findViewById(R.id.backFilterBtn);
+		ImageButton refreshButton = (ImageButton) findViewById(R.id.refreshBtn);
 
-        final TextView filterName = (TextView) findViewById(R.id.filterName);
+		final TextView filterName = (TextView) findViewById(R.id.filterName);
 
-        dba = new DatabaseAdapter(mContext);
+		dba = new DatabaseAdapter(mContext);
 
-        // TODO- should be set to whatever the user left the filter as
-        filterName.setText("Show All");
+		// check if there are any filters, if not, hide arrows
+		dba.open();
+		if (dba.getUsedFilters().size() == 0) {
+			View ffb = findViewById(R.id.forwardFilterBtn);
+			ffb.setVisibility(View.INVISIBLE);
 
-        showAllButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                filterName.setText("All Items");
-                // TODO- actually hook up to filters
-                currentFilter = null;
-                RefreshListTask task = new RefreshListTask();
-                if (isConnected(v.getContext())) {
-                    // TODO: get actual username
-                    task.execute(currentFilter);
+			View bfb = findViewById(R.id.backFilterBtn);
+			bfb.setVisibility(View.INVISIBLE);
+		}
+		else{
+			View ffb = findViewById(R.id.forwardFilterBtn);
+			ffb.setVisibility(View.VISIBLE);
 
-                } else {
-                    Toast.makeText(v.getContext(), "Internet Error",
-                            Toast.LENGTH_SHORT);
-                }
-            }
-        });
+			View bfb = findViewById(R.id.backFilterBtn);
+			bfb.setVisibility(View.VISIBLE);
+		}
+		dba.close();
 
-        filterButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),
-                        FilterSettingsActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        postButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),
-                        PostItemActivity.class);
-                startActivity(intent);
-            }
-        });
+		// TODO- should be set to whatever the user left the filter as
+		filterName.setText("Show All");
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),
-                        EditFilterActivity.class);
-                // startActivity(intent);
-                startActivityForResult(intent, ADD_FILTER_RESULT);
-            }
-        });
+		showAllButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				filterName.setText("All Items");
+				// TODO- actually hook up to filters
+				currentFilter = null;
+				RefreshListTask task = new RefreshListTask();
+				if (isConnected(v.getContext())) {
+					// TODO: get actual username
+					task.execute(currentFilter);
 
-        forwardFilterButton.setOnClickListener(new View.OnClickListener() {
-            
-            //TODO: fix logic
-            public void onClick(View v) {
-                dba.open();
-                if (dba.getUsedFilters().size() != 0) {
+				} else {
+					Toast.makeText(v.getContext(), "Internet Error",
+							Toast.LENGTH_SHORT);
+				}
+			}
+		});
 
-                    currentFilterIndex++;
-                    if ((dba.getUsedFilters().size() != 0)
-                            && (currentFilterIndex == dba.getUsedFilters()
-                                    .size())) {
-                        currentFilterIndex = 0;
-                    }
-                    final Filter filter = dba.getUsedFilters().get(
-                            currentFilterIndex);
-                    String displayName = filter.getFiltername();
+		filterButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(),
+						FilterSettingsActivity.class);
+				startActivity(intent);
+			}
+		});
 
-                    filterName.setText(displayName);
-                    currentFilter = filter;
-                    dba.close();
+		postButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(),
+						PostItemActivity.class);
+				startActivity(intent);
+			}
+		});
 
-                    RefreshListTask task = new RefreshListTask();
-                    if (isConnected(v.getContext())) {
-                        // TODO: get actual username
-                        Log.i(TAG,
-                                filter.getFiltername() + " : "
-                                        + filter.getKeyWordsString());
-                        task.execute(filter);
+		addButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(),
+						EditFilterActivity.class);
+				// startActivity(intent);
+				startActivityForResult(intent, ADD_FILTER_RESULT);
+			}
+		});
 
-                    } else {
-                        Toast.makeText(v.getContext(), "Internet Error",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    dba.close();
+		forwardFilterButton.setOnClickListener(new View.OnClickListener() {
 
-                    Toast.makeText(v.getContext(), "No Filters Defined Yet",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+			//TODO: fix logic
+			public void onClick(View v) {
+				dba.open();
+				if (dba.getUsedFilters().size() != 0) {
 
-        backFilterButton.setOnClickListener(new View.OnClickListener() {
-            
-            //TODO: fix logic
-            public void onClick(View v) {
-                dba.open();
-                if (dba.getUsedFilters().size() != 0) {
-                    currentFilterIndex--;
-                    if (currentFilterIndex < 0) {
-                        currentFilterIndex = dba.getUsedFilters().size() - 1;
-                    }
-                    final Filter filter = dba.getUsedFilters().get(
-                            currentFilterIndex);
-                    String displayName = filter.getFiltername();
+					currentFilterIndex++;
+					if ((dba.getUsedFilters().size() != 0)
+							&& (currentFilterIndex == dba.getUsedFilters()
+									.size())) {
+						currentFilterIndex = 0;
+					}
+					final Filter filter = dba.getUsedFilters().get(
+							currentFilterIndex);
+					String displayName = filter.getFiltername();
 
-                    filterName.setText(displayName);
-                    currentFilter = filter;
-                    dba.close();
+					filterName.setText(displayName);
+					currentFilter = filter;
+					dba.close();
 
-                    RefreshListTask task = new RefreshListTask();
-                    if (isConnected(v.getContext())) {
-                        // TODO: get actual username
-                        task.execute(filter);
+					RefreshListTask task = new RefreshListTask();
+					if (isConnected(v.getContext())) {
+						// TODO: get actual username
+						Log.i(TAG,
+								filter.getFiltername() + " : "
+								+ filter.getKeyWordsString());
+					task.execute(filter);
 
-                    } else {
-                        Toast.makeText(v.getContext(), "Internet Error",
-                                Toast.LENGTH_SHORT);
-                    }
-                } else {
-                    dba.close();
-                    Toast.makeText(v.getContext(), "No Filters Defined Yet",
-                            Toast.LENGTH_SHORT).show();
-                }
+					} else {
+						Toast.makeText(v.getContext(), "Internet Error",
+								Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					dba.close();
 
-            }
-        });
+					Toast.makeText(v.getContext(), "No Filters Defined Yet",
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 
-        refreshButton.setOnClickListener(new View.OnClickListener() {
+		backFilterButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                RefreshListTask task = new RefreshListTask();
-                if (isConnected(v.getContext())) {
-                    // TODO: get actual username
-                    task.execute(currentFilter);
+			//TODO: fix logic
+			public void onClick(View v) {
+				dba.open();
+				if (dba.getUsedFilters().size() != 0) {
+					currentFilterIndex--;
+					if (currentFilterIndex < 0) {
+						currentFilterIndex = dba.getUsedFilters().size() - 1;
+					}
+					final Filter filter = dba.getUsedFilters().get(
+							currentFilterIndex);
+					String displayName = filter.getFiltername();
 
-                } else {
-                    Toast.makeText(v.getContext(), "Internet Error",
-                            Toast.LENGTH_SHORT);
-                }
-            }
-        });
+					filterName.setText(displayName);
+					currentFilter = filter;
+					dba.close();
 
-        RefreshListTask task = new RefreshListTask();
-        if (isConnected(this)) {
-            // TODO: get actual username
-            task.execute(currentFilter);
+					RefreshListTask task = new RefreshListTask();
+					if (isConnected(v.getContext())) {
+						// TODO: get actual username
+						task.execute(filter);
 
-        } else {
-            Toast.makeText(this, "Internet Error", Toast.LENGTH_SHORT);
-        }
-    }
+					} else {
+						Toast.makeText(v.getContext(), "Internet Error",
+								Toast.LENGTH_SHORT);
+					}
+				} else {
+					dba.close();
+					Toast.makeText(v.getContext(), "No Filters Defined Yet",
+							Toast.LENGTH_SHORT).show();
+				}
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ADD_FILTER_RESULT) {
-            Intent intent = new Intent((Context) this,
-                    FilterSettingsActivity.class);
-            startActivity(intent);
+			}
+		});
 
-        }
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        RefreshListTask task = new RefreshListTask();
-        if (isConnected(this)) {
-            // TODO: get actual username
-            task.execute(currentFilter);
+		refreshButton.setOnClickListener(new View.OnClickListener() {
 
-        } else {
-            Toast.makeText(this, "Internet Error", Toast.LENGTH_SHORT);
-        }
-    }
+			public void onClick(View v) {
+				RefreshListTask task = new RefreshListTask();
+				if (isConnected(v.getContext())) {
+					// TODO: get actual username
+					task.execute(currentFilter);
 
-    public class RefreshListTask extends
-            AsyncTask<Filter, byte[], List<ReuseItem>> {
-        private ProgressDialog dialog;
+				} else {
+					Toast.makeText(v.getContext(), "Internet Error",
+							Toast.LENGTH_SHORT);
+				}
+			}
+		});
 
-        @Override
-        protected void onPreExecute() {
-            dialog = ProgressDialog.show(ItemListActivity.this, "",
-                    "Refreshing Items List", true);
-        }
+		RefreshListTask task = new RefreshListTask();
+		if (isConnected(this)) {
+			// TODO: get actual username
+			task.execute(currentFilter);
 
-        @Override
-        protected List<ReuseItem> doInBackground(Filter... params) {
-            // TODO Auto-generated method stub
-            List<ReuseItem> items = null;
-            try {
-                if (params[0] == null) {
-                    Log.i("RefreshListTask", "filter null");
-                    items = Client.getItemList("");
-                } else {
-                    Log.i("RefreshListTask", "filter not null");
-                    items = Client.getFilteredItems("", params[0]);
-                }
-            } catch (ClientException e) {
-                // e.printStackTrace();
-                Log.i(TAG, e.getMessage());
-            }
-            return items;
-        }
+		} else {
+			Toast.makeText(this, "Internet Error", Toast.LENGTH_SHORT);
+		}
+	}
 
-        @Override
-        protected void onPostExecute(List<ReuseItem> objects) { // happens in
-            // UI thread
-            // Bad practice, but meh, it'd be better if java had tuples
-            if (objects == null) {
-                Toast.makeText(getApplicationContext(),
-                        "Error getting data, please try again later",
-                        Toast.LENGTH_SHORT).show();
-            }
-            setListAdapter(new ItemListAdapter(mContext,
-                    (ArrayList<ReuseItem>) objects));
-            dialog.dismiss();
-        }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == ADD_FILTER_RESULT) {
+			Intent intent = new Intent((Context) this,
+					FilterSettingsActivity.class);
+			startActivity(intent);
 
-    }
+		}
+	}
 
-    /**
-     * Checks to see if user is connected to wifi or 3g
-     * 
-     * @return
-     */
-    private boolean isConnected(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = null;
-        if (connectivityManager != null) {
+	@Override
+	protected void onResume() {
+		super.onResume();
+		RefreshListTask task = new RefreshListTask();
+		if (isConnected(this)) {
+			// TODO: get actual username
+			task.execute(currentFilter);
 
-            networkInfo = connectivityManager
-                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		} else {
+			Toast.makeText(this, "Internet Error", Toast.LENGTH_SHORT);
+		}
+		// check if there are any filters, if not, hide arrows
+		dba.open();
+		if (dba.getUsedFilters().size() == 0) {
+			View ffb = findViewById(R.id.forwardFilterBtn);
+			ffb.setVisibility(View.INVISIBLE);
 
-            if (!networkInfo.isAvailable()) {
-                networkInfo = connectivityManager
-                        .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            }
-        }
-        return networkInfo == null ? false : networkInfo.isConnected();
+			View bfb = findViewById(R.id.backFilterBtn);
+			bfb.setVisibility(View.INVISIBLE);
+		}
+		else{
+			View ffb = findViewById(R.id.forwardFilterBtn);
+			ffb.setVisibility(View.VISIBLE);
 
-    }
+			View bfb = findViewById(R.id.backFilterBtn);
+			bfb.setVisibility(View.VISIBLE);
+		}
+		dba.close();       
+	}
+
+	public class RefreshListTask extends
+	AsyncTask<Filter, byte[], List<ReuseItem>> {
+		private ProgressDialog dialog;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = ProgressDialog.show(ItemListActivity.this, "",
+					"Refreshing Items List", true);
+		}
+
+		@Override
+		protected List<ReuseItem> doInBackground(Filter... params) {
+			// TODO Auto-generated method stub
+			List<ReuseItem> items = null;
+			try {
+				if (params[0] == null) {
+					Log.i("RefreshListTask", "filter null");
+					items = Client.getItemList("");
+				} else {
+					Log.i("RefreshListTask", "filter not null");
+					items = Client.getFilteredItems("", params[0]);
+				}
+			} catch (ClientException e) {
+				// e.printStackTrace();
+				Log.i(TAG, e.getMessage());
+			}
+			return items;
+		}
+
+		@Override
+		protected void onPostExecute(List<ReuseItem> objects) { // happens in
+			// UI thread
+			// Bad practice, but meh, it'd be better if java had tuples
+			if (objects == null) {
+				Toast.makeText(getApplicationContext(),
+						"Error getting data, please try again later",
+						Toast.LENGTH_SHORT).show();
+			}
+			setListAdapter(new ItemListAdapter(mContext,
+					(ArrayList<ReuseItem>) objects));
+			dialog.dismiss();
+		}
+
+	}
+
+	/**
+	 * Checks to see if user is connected to wifi or 3g
+	 * 
+	 * @return
+	 */
+	private boolean isConnected(Context context) {
+		ConnectivityManager connectivityManager = (ConnectivityManager) context
+		.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = null;
+		if (connectivityManager != null) {
+
+			networkInfo = connectivityManager
+			.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+			if (!networkInfo.isAvailable()) {
+				networkInfo = connectivityManager
+				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+			}
+		}
+		return networkInfo == null ? false : networkInfo.isConnected();
+
+	}
 }
