@@ -77,15 +77,15 @@ LocationListener {
 				String itemTitleStr = itemTitle.getText().toString();
 				String itemLocationStr = itemLocation.getText().toString();
 
-				if (!itemTitleStr.matches("[\\p{Alnum}[\\-]]*") || itemTitleStr.matches("")) {
-					//error- non-alphanumerics found
-					Toast.makeText(v.getContext(), "Item name contains invalid characters or is empty, please use alphanumeric characters only", Toast.LENGTH_SHORT).show();
+				if (itemTitleStr.matches("")) {
+					//error- empty string
+					Toast.makeText(v.getContext(), "Please enter an item name", Toast.LENGTH_SHORT).show();
 
 				}
 
-				else if (!itemLocationStr.matches("[\\p{Alnum}[\\-]]*") || itemLocationStr.matches("")) {
-					//error- non-alphanumerics found
-					Toast.makeText(v.getContext(), "Location name contains invalid characters or is empty, please use alphanumeric characters only", Toast.LENGTH_SHORT).show();
+				else if (itemLocationStr.matches("")) {
+					//error- empty string
+					Toast.makeText(v.getContext(), "Please enter a location", Toast.LENGTH_SHORT).show();
 
 				} 
 
