@@ -65,7 +65,9 @@ public class EditFilterActivity extends ListActivity {
             mDbAdapter.open();
             Filter filter = mDbAdapter.getFilter(oldFilterName);
             for (String keyword : filter.getKeyWords()) {
-                rows.add(keyword);
+                if (keyword != null || keyword != "" || keyword.length() > 0) {
+                    rows.add(keyword);
+                }
             }
             mDbAdapter.close();
         }
