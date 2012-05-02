@@ -57,7 +57,7 @@ public class ItemListActivity extends ListActivity {
 		ImageButton forwardFilterButton = (ImageButton) findViewById(R.id.forwardFilterBtn);
 		ImageButton backFilterButton = (ImageButton) findViewById(R.id.backFilterBtn);
 		ImageButton refreshButton = (ImageButton) findViewById(R.id.refreshBtn);
-
+		
 		final TextView filterName = (TextView) findViewById(R.id.filterName);
 
 		dba = new DatabaseAdapter(mContext);
@@ -131,15 +131,17 @@ public class ItemListActivity extends ListActivity {
 			//TODO: fix logic
 			public void onClick(View v) {
 				dba.open();
-				if (dba.getUsedFilters().size() != 0) {
+				List<Filter> list = dba.getUsedFilters();
+				list.add(new Filter("all", true));
+				
+				if (list.size() != 0) {
 
 					currentFilterIndex++;
-					if ((dba.getUsedFilters().size() != 0)
-							&& (currentFilterIndex == dba.getUsedFilters()
-									.size())) {
+					if ((list.size() != 0)
+							&& (currentFilterIndex == list.size())) {
 						currentFilterIndex = 0;
 					}
-					final Filter filter = dba.getUsedFilters().get(
+					final Filter filter = list.get(
 							currentFilterIndex);
 					String displayName = filter.getFiltername();
 
@@ -173,12 +175,15 @@ public class ItemListActivity extends ListActivity {
 			//TODO: fix logic
 			public void onClick(View v) {
 				dba.open();
-				if (dba.getUsedFilters().size() != 0) {
+				List<Filter> list = dba.getUsedFilters();
+				list.add(new Filter("all", true));
+								
+				if (list.size() != 0) {
 					currentFilterIndex--;
 					if (currentFilterIndex < 0) {
-						currentFilterIndex = dba.getUsedFilters().size() - 1;
+						currentFilterIndex = list.size() - 1;
 					}
-					final Filter filter = dba.getUsedFilters().get(
+					final Filter filter = list.get(
 							currentFilterIndex);
 					String displayName = filter.getFiltername();
 

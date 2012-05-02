@@ -61,7 +61,7 @@ LocationListener {
 		final EditText itemDescription = (EditText) findViewById(R.id.edit_description);
 		final EditText itemLocation = (EditText) findViewById(R.id.item_location);
 		//        ReuseItem item = new ReuseItem("stubid", "stubsender",
-				//                itemTitle.getText().toString(), itemDescription
+		//                itemTitle.getText().toString(), itemDescription
 		//                        .getText().toString(), itemLocation.getText()
 		//                        .toString(), "stubtime", 0, 0);
 		postButton.setOnClickListener(new View.OnClickListener() {
