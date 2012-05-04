@@ -96,8 +96,9 @@ public class FilterSettingsListAdapter extends ArrayAdapter<Filter> {
                             EditFilterActivity.class);
                     intent.putExtra("filterName", filter.getFiltername());
                     // context.startActivity(intent);
-                    ((Activity) context).startActivityForResult(intent,
-                            ItemListActivity.ADD_FILTER_RESULT);
+//                    ((Activity) context).startActivityForResult(intent,
+//                            ItemListActivity.ADD_FILTER_RESULT);
+                    ((Activity) context).startActivity(intent);
 
                 }
             });

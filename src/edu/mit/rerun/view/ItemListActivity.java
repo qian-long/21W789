@@ -34,7 +34,7 @@ import android.widget.Toast;
  */
 public class ItemListActivity extends ListActivity {
 
-	public static final int ADD_FILTER_RESULT = 0;
+//	public static final int ADD_FILTER_RESULT = 0;
 	public static final String TAG = "ItemListActivity";
 	private Context mContext = this;
 	private DatabaseAdapter dba;
@@ -121,8 +121,7 @@ public class ItemListActivity extends ListActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(),
 						EditFilterActivity.class);
-				// startActivity(intent);
-				startActivityForResult(intent, ADD_FILTER_RESULT);
+				 startActivity(intent);
 			}
 		});
 
@@ -229,16 +228,16 @@ public class ItemListActivity extends ListActivity {
 		}
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == ADD_FILTER_RESULT) {
-			Intent intent = new Intent((Context) this,
-					FilterSettingsActivity.class);
-			startActivity(intent);
-
-		}
-	}
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		super.onActivityResult(requestCode, resultCode, data);
+//		if (requestCode == ADD_FILTER_RESULT) {
+//			Intent intent = new Intent((Context) this,
+//					FilterSettingsActivity.class);
+//			startActivity(intent);
+//
+//		}
+//	}
 
 	@Override
 	protected void onResume() {
