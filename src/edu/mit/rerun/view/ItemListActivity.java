@@ -52,7 +52,7 @@ public class ItemListActivity extends ListActivity {
 
 		ImageButton filterButton = (ImageButton) findViewById(R.id.filterButton);
 		ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
-		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+//		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
 
 		ImageButton forwardFilterButton = (ImageButton) findViewById(R.id.forwardFilterBtn);
 		ImageButton backFilterButton = (ImageButton) findViewById(R.id.backFilterBtn);
@@ -117,13 +117,13 @@ public class ItemListActivity extends ListActivity {
 			}
 		});
 
-		addButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(),
-						EditFilterActivity.class);
-				 startActivity(intent);
-			}
-		});
+//		addButton.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				Intent intent = new Intent(v.getContext(),
+//						EditFilterActivity.class);
+//				 startActivity(intent);
+//			}
+//		});
 
 		forwardFilterButton.setOnClickListener(new View.OnClickListener() {
 

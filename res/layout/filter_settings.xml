@@ -36,13 +36,13 @@
             android:background="@drawable/post_icon_selector"
             android:scaleType="fitXY" />
 
-        <ImageButton
-            android:id="@+id/addButton"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="right"
-            android:background="@drawable/add_filter_icon_selector"
-            android:scaleType="fitXY" />
+<!--         <ImageButton -->
+<!--             android:id="@+id/addButton" -->
+<!--             android:layout_width="32dp" -->
+<!--             android:layout_height="32dp" -->
+<!--             android:layout_gravity="right" -->
+<!--             android:background="@drawable/add_filter_icon_selector" -->
+<!--             android:scaleType="fitXY" /> -->
 
         <ImageButton
             android:id="@+id/homeButton"

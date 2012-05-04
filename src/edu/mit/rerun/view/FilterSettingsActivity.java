@@ -42,7 +42,7 @@ public class FilterSettingsActivity extends ListActivity {
 		setContentView(R.layout.filter_settings);
 		mDbAdapter = new DatabaseAdapter(this);
 		ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
-		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+//		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
 		ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
 
 		postButton.setOnClickListener(new View.OnClickListener() {
@@ -54,14 +54,14 @@ public class FilterSettingsActivity extends ListActivity {
 			}
 		});
 
-		addButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(),
-						EditFilterActivity.class);
-				startActivity(intent);
-			}
-		});
+//		addButton.setOnClickListener(new View.OnClickListener() {
+//
+//			public void onClick(View v) {
+//				Intent intent = new Intent(v.getContext(),
+//						EditFilterActivity.class);
+//				startActivity(intent);
+//			}
+//		});
 
 		homeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
