@@ -13,8 +13,10 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 /**
  * This Activity is where users can change their filters.
@@ -75,6 +77,22 @@ public class FilterSettingsActivity extends ListActivity {
 		filters = mDbAdapter.getAllFilters();
 		mDbAdapter.close();
 
+		ListView lv = getListView();
+		LayoutInflater inflater = getLayoutInflater();
+		View footer = inflater.inflate(R.layout.filter_list_footer, null, false);
+		lv.addFooterView(footer);
+		
+		ImageButton addFilterBtn = (ImageButton) footer.findViewById(R.id.addButton);
+		addFilterBtn.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(),
+                        EditFilterActivity.class);
+                 startActivity(intent);
+            }
+        });
+		
 		Collections.sort(filters, new FilterComparator());
 		setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters, mDbAdapter));
 	}
