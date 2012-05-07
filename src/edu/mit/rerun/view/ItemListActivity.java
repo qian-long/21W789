@@ -205,7 +205,6 @@ public class ItemListActivity extends ListActivity {
 					Toast.makeText(v.getContext(), "No Filters Defined Yet",
 							Toast.LENGTH_SHORT).show();
 				}
-
 			}
 		});
 
