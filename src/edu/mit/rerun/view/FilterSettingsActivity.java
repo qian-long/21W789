@@ -13,8 +13,10 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 /**
  * This Activity is where users can change their filters.
@@ -40,7 +42,7 @@ public class FilterSettingsActivity extends ListActivity {
 		setContentView(R.layout.filter_settings);
 		mDbAdapter = new DatabaseAdapter(this);
 		ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
-		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+//		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
 		ImageButton homeButton = (ImageButton) findViewById(R.id.homeButton);
 
 		postButton.setOnClickListener(new View.OnClickListener() {
@@ -52,14 +54,14 @@ public class FilterSettingsActivity extends ListActivity {
 			}
 		});
 
-		addButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(),
-						EditFilterActivity.class);
-				startActivity(intent);
-			}
-		});
+//		addButton.setOnClickListener(new View.OnClickListener() {
+//
+//			public void onClick(View v) {
+//				Intent intent = new Intent(v.getContext(),
+//						EditFilterActivity.class);
+//				startActivity(intent);
+//			}
+//		});
 
 		homeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -75,6 +77,22 @@ public class FilterSettingsActivity extends ListActivity {
 		filters = mDbAdapter.getAllFilters();
 		mDbAdapter.close();
 
+		ListView lv = getListView();
+		LayoutInflater inflater = getLayoutInflater();
+		View footer = inflater.inflate(R.layout.filter_list_footer, null, false);
+		lv.addFooterView(footer);
+		
+		ImageButton addFilterBtn = (ImageButton) footer.findViewById(R.id.addButton);
+		addFilterBtn.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(v.getContext(),
+                        EditFilterActivity.class);
+                 startActivity(intent);
+            }
+        });
+		
 		Collections.sort(filters, new FilterComparator());
 		setListAdapter(new FilterSettingsListAdapter(this, (ArrayList<Filter>)filters, mDbAdapter));
 	}

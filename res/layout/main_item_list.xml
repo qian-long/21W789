@@ -69,12 +69,12 @@
                 android:background="@drawable/post_icon_selector"
                 android:scaleType="fitXY" />
 
-            <ImageButton
-                android:id="@+id/addButton"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="@drawable/add_filter_icon_selector"
-                android:scaleType="fitXY" />
+<!--             <ImageButton -->
+<!--                 android:id="@+id/addButton" -->
+<!--                 android:layout_width="36dp" -->
+<!--                 android:layout_height="36dp" -->
+<!--                 android:background="@drawable/add_filter_icon_selector" -->
+<!--                 android:scaleType="fitXY" /> -->
 
             <ImageButton
                 android:id="@+id/filterButton"

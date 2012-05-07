@@ -120,7 +120,6 @@ public class EditFilterActivity extends ListActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                mDbAdapter.close();
                 finish();
             }
         });
@@ -149,7 +148,7 @@ public class EditFilterActivity extends ListActivity {
                         mDbAdapter.addFilter(filter);
                         mDbAdapter.close();
 
-                        setResult(ItemListActivity.ADD_FILTER_RESULT);
+//                        setResult(ItemListActivity.ADD_FILTER_RESULT);
                         finish();
                     } else {
                         Toast.makeText(v.getContext(), "Filter already exists, please enter another filter name",
@@ -161,16 +160,16 @@ public class EditFilterActivity extends ListActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ItemListActivity.ADD_FILTER_RESULT) {
-            Intent intent = new Intent((Context) this,
-                    FilterSettingsActivity.class);
-            startActivity(intent);
-
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == ItemListActivity.ADD_FILTER_RESULT) {
+//            Intent intent = new Intent((Context) this,
+//                    FilterSettingsActivity.class);
+//            startActivity(intent);
+//
+//        }
+//    }
 
 
 	// TODO, check to see that keyword is unique

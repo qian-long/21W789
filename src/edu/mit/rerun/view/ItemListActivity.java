@@ -34,7 +34,7 @@ import android.widget.Toast;
  */
 public class ItemListActivity extends ListActivity {
 
-	public static final int ADD_FILTER_RESULT = 0;
+//	public static final int ADD_FILTER_RESULT = 0;
 	public static final String TAG = "ItemListActivity";
 	private Context mContext = this;
 	private DatabaseAdapter dba;
@@ -52,7 +52,7 @@ public class ItemListActivity extends ListActivity {
 
 		ImageButton filterButton = (ImageButton) findViewById(R.id.filterButton);
 		ImageButton postButton = (ImageButton) findViewById(R.id.postButton);
-		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
+//		ImageButton addButton = (ImageButton) findViewById(R.id.addButton);
 
 		ImageButton forwardFilterButton = (ImageButton) findViewById(R.id.forwardFilterBtn);
 		ImageButton backFilterButton = (ImageButton) findViewById(R.id.backFilterBtn);
@@ -117,14 +117,13 @@ public class ItemListActivity extends ListActivity {
 			}
 		});
 
-		addButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(),
-						EditFilterActivity.class);
-				// startActivity(intent);
-				startActivityForResult(intent, ADD_FILTER_RESULT);
-			}
-		});
+//		addButton.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				Intent intent = new Intent(v.getContext(),
+//						EditFilterActivity.class);
+//				 startActivity(intent);
+//			}
+//		});
 
 		forwardFilterButton.setOnClickListener(new View.OnClickListener() {
 
@@ -176,7 +175,7 @@ public class ItemListActivity extends ListActivity {
 			public void onClick(View v) {
 				dba.open();
 				List<Filter> list = dba.getUsedFilters();
-				list.add(new Filter("all", true));
+				list.add(new Filter("Show All", true));
 								
 				if (list.size() != 0) {
 					currentFilterIndex--;
@@ -233,16 +232,16 @@ public class ItemListActivity extends ListActivity {
 		}
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == ADD_FILTER_RESULT) {
-			Intent intent = new Intent((Context) this,
-					FilterSettingsActivity.class);
-			startActivity(intent);
-
-		}
-	}
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		super.onActivityResult(requestCode, resultCode, data);
+//		if (requestCode == ADD_FILTER_RESULT) {
+//			Intent intent = new Intent((Context) this,
+//					FilterSettingsActivity.class);
+//			startActivity(intent);
+//
+//		}
+//	}
 
 	@Override
 	protected void onResume() {
