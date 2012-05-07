@@ -57,7 +57,18 @@ public class ItemListAdapter extends ArrayAdapter<ReuseItem> {
             title.setText(item.getTitle());
 //            timestamp.setText(item.getTime());
             try {
-                timestamp.setText(getDifferenceInMinutes(item.getTime()) + " mins ago");
+                long mins = getDifferenceInMinutes(item.getTime());
+                String time = "";
+                if (mins > 1440) {
+                    time = "over 24 hours ago";
+                }
+                else if (mins > 10080) {
+                    time = "over a week ago";
+                }
+                else {
+                    time = mins + " mins ago";
+                }
+                timestamp.setText(time);
             } catch (ParseException e) {
                 // TODO Auto-generated catch block
                 timestamp.setText("error");
