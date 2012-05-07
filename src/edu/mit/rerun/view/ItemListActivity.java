@@ -175,7 +175,7 @@ public class ItemListActivity extends ListActivity {
 			public void onClick(View v) {
 				dba.open();
 				List<Filter> list = dba.getUsedFilters();
-				list.add(new Filter("all", true));
+				list.add(new Filter("Show All", true));
 								
 				if (list.size() != 0) {
 					currentFilterIndex--;
