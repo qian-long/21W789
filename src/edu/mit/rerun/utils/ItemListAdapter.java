@@ -59,7 +59,11 @@ public class ItemListAdapter extends ArrayAdapter<ReuseItem> {
             try {
                 long mins = getDifferenceInMinutes(item.getTime());
                 String time = "";
-                if (mins > 1440) {
+                if (mins > 60 && mins <= 1440) {
+                    long hour = mins / 60;
+                    time = "over " + hour + " hours ago";
+                }
+                else if (mins > 1440 && mins <= 10080) {
                     time = "over 24 hours ago";
                 }
                 else if (mins > 10080) {
