@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="left"
+    android:layout_weight=".66"
     android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/item_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginRight="30dp"
-        android:gravity="left"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/item_timestamp"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="right"
-        android:gravity="right"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="20dp" />
+        android:layout_weight=".33"
+        android:orientation="horizontal" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_gravity="right"
-        android:src="@drawable/arrow" />
+        <TextView
+            android:id="@+id/item_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_gravity="right"
+            android:src="@drawable/arrow" />
+    </LinearLayout>
 
 </LinearLayout>
